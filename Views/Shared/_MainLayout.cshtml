@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewBag.Title</title>
+    <meta charset="utf-8">
+    <meta name="description" content="The HTML5 Herald">
+    <meta name="author" content="SitePoint">
+    <script src="~/scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/scripts/bootstrap.min.js"></script>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <!-- TOASTR -->
+    <script src="https://unpkg.com/vue-toastr-2/dist/vue-toastr-2.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/vue-toastr-2/dist/vue-toastr-2.min.css">
+    <link href="~/Content/Style.css" rel="stylesheet" />
+</head>
+<body>
+    <!--Navbar-->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="~/Home/Index" class="navbar-brand ">
+                    <img src="~/Images/logo.png" class="logo-size" />
+                </a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="~/Home/Index">
+                            <i class="glyphicon glyphicon-home"></i>
+                            Home
+                        </a>
+                    </li>
+                    <li>
+                        <a href="~/Items/Index">
+                            <i class="glyphicon glyphicon-sunglasses"></i>
+                            Products
+                        </a>
+                    </li>
+                    <li>
+                        <a href="~/Branches/Index">
+                            <i class="glyphicon glyphicon-map-marker"></i>
+                            Branches
+                        </a>
+                    </li>
+                    <li>
+                        <a href="~/Home/Contact">
+                            <i class="glyphicon glyphicon-phone-alt"></i>
+                            Contact us
+                        </a>
+                    </li>
+                    <li>
+                        <a href="~/Home/About">
+                            <i class="glyphicon glyphicon-info-sign"></i>
+                            About us
+                        </a>
+                    </li>
+                    <li>
+                        @using (Html.BeginForm("Search", "Items", FormMethod.Post))
+                        {
+                            <input type="search" name="searchName" id="searchName" placeholder="Search for item...">
+                        }
+                    </li>
+                </ul>
+                <!--Partial Page-->
+                @{
+                    Html.RenderPartial("_Login");
+                }
+            </div>
+        </div>
+    </nav>
+    <!--Render Body-->
+    <div class="container text-center">
+        <div class="row">
+            @RenderBody()
+        </div>
+    </div>
+    <!--Footer-->
+    <footer class="navbar navbar-fixed-bottom myfooter">
+        <div class="container">
+            <div class="navbar-left" style="padding-bottom:7px">
+                <a href="https://www.facebook.com" target="_blank"><img src="~/Images/facebookicon.png" /></a>
+                <a href="https://twitter.com" target="_blank"><img src="~/Images/twittericon.png" /></a>
+                <a href="https://plus.google.com/" target="_blank"><img src="~/Images/googleplusicon.png" /></a>
+                <a href="https://instagram.com" target="_blank"><img src="~/Images/instagramicon.png" /></a>
+            </div>
+            <div class="myfooter navbar-right">
+                <p> Copyright 2018 · All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    @*<script src="~/scripts/jquery-3.3.1.min.js"></script>
+        <script src="~/scripts/bootstrap.min.js"></script>*@
+    @RenderSection("scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,145 @@
+﻿@model IEnumerable<Eyewear_Store_System.Models.Order>
+@using WebApplication1.Models;
+@{
+    ViewBag.Title = "MyCart";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+    double sum = 0;
+}
+
+<h2>My Cart</h2>
+<hr />
+@if (Model != null && Model.Count() > 0)
+{
+    <table class="table table-hover">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Branch.BranchName)
+            </th>
+            <th>
+                @Html.DisplayName("Item Description")
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th></th>
+        </tr>
+        @foreach (var order in Model)
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+            var branch = db.Branches.Find(order.BranchId);
+            var item = db.Items.Find(order.ItemId);
+
+
+            <tr>
+                <td>
+                    @Html.DisplayName(branch.BranchName)
+                </td>
+                <td>
+                    @Html.DisplayName(item.Color+" "+item.ItemType.CategoryName+" "+item.BrandName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => order.Quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => order.Price)
+                </td>
+                <td>
+                    <a title="Edit" href=@Url.Action("Edit", "Cart", new { ItemId = order.ItemId })>
+                        <span class="glyphicon glyphicon glyphicon-edit" style="font-size:large"></span>
+                    </a> |
+                    <a title="Delete" href=@Url.Action("Delete", "Cart", new { ItemId = order.ItemId }) onclick="return confirm('Are you sure you want to delete this item?')">
+                        <span class="glyphicon glyphicon glyphicon-trash" style="font-size:large"></span>
+                    </a>
+                </td>
+            </tr>
+
+        }
+
+    </table>
+    foreach (var y in Model)
+    {
+        sum = Convert.ToDouble(y.Price) + sum;
+    }
+    <div class="row">
+        <div class="col-md-9"></div>
+        <div class="col-md-offset-5 col-md-2">
+            <h3 style="text-align: center">Total: @sum</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-offset-5 col-md-2">
+            <a class="btn btn-default btn-block" href=@Url.Action("Save", "Cart")>
+                <span class="glyphicon glyphicon-floppy-disk"></span>
+                Save
+            </a>
+            <a class="btn btn-default btn-block" href=@Url.Action("BuyCart", "Cart")>Buy</a>
+        </div>
+    </div>
+}
+else if(ViewBag.Deleted=="yes" || ViewBag.Empty=="yes")
+{
+    <div class="alert alert-danger">
+        <h4 style="font-weight:bolder">
+            <span class="glyphicon glyphicon-remove">
+            </span> Your Cart is Empty!
+        </h4>
+    </div>
+}
+@switch ((string)ViewBag.Result)
+{
+    case "Saved":
+        <div class="alert alert-success" id="error-div">
+            <h4 style="font-weight:bolder">
+                <span class="glyphicon glyphicon-ok">
+                </span> Your cart has been saved successfully.
+            </h4>
+        </div>
+        break;
+    case "Edited":
+        <div class="alert alert-success" id="error-div">
+            <h4 style="font-weight:bolder">
+                <span class="glyphicon glyphicon-ok">
+                </span> Your item has been edited successfully.
+            </h4>
+        </div>
+        break;
+    case "Deleted":
+        <div class="alert alert-success" id="error-div">
+            <h4 style="font-weight:bolder">
+                <span class="glyphicon glyphicon-ok">
+                </span> Your item has been deleted successfully.
+            </h4>
+        </div>
+        break;
+    case "PayButton":
+        <h3>click the button to pay for your order</h3>
+        <div class="row">
+            <div class="pay col-md-2 col-md-offset-5">
+                <form action="@Url.Action("Pay", "Cart")" method="POST">
+                    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button" id="stripebutton"
+                            data-key="pk_test_2ETmRGFhL3TcVHaTtkbNmsr2"
+                            data-amount="@ViewBag.Amount"
+                            data-name="@ViewBag.Name"
+                            data-description="@ViewBag.Description"
+                            data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+                            data-locale="auto">
+                    </script>
+                </form>
+            </div>
+        </div>
+        break;
+    case "Added":
+        <h3>Thanks, you will receive an email from us</h3>
+        break;
+}
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $("#error-div").delay(3000).fadeOut();
+        });
+    </script>
+}

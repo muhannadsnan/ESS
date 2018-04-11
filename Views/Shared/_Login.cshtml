@@ -1,0 +1,93 @@
+﻿@using Microsoft.AspNet.Identity
+@using WebApplication1.Models;
+
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoff" }))
+    {
+        var db = new ApplicationDbContext();
+        var UserId = User.Identity.GetUserId();
+        var UserRoleId = db.Users.Find(UserId).Roles.Select(a => a.RoleId).SingleOrDefault();
+        var UserRoleName = db.Roles.Find(UserRoleId).Name;
+        var CurrentUser = db.Users.Find(UserId);
+
+        @Html.AntiForgeryToken()
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                <a href="@Url.Action("MyCart", "Cart")" style="background-color:darkred">
+                    <span class="glyphicon glyphicon-shopping-cart" style="color:bisque;font-size:x-large;"></span>
+                    <span class="badge">@Session["count"]</span>
+                </a>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <span class="glyphicon glyphicon-user"></span>
+                    <strong>Welcome: @CurrentUser.UserName</strong>
+                    <span class="glyphicon glyphicon-chevron-down"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <div class="navbar-user">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    @if (UserRoleName == "Clients")
+                                    {
+                                        <a href="~/Orders/GetOrdersByUser" class="btn btn-default btn-block">Your Orders</a>
+                                    }
+                                    else if (UserRoleName == "Employees")
+                                    {
+                                        <a href="~/Account/EmployeeTasksView" class="btn btn-default btn-block">Go To Tasks</a>
+                                    }
+                                    else if (UserRoleName == "Admins")
+                                    {
+                                        <a href="~/Account/ManagerTasksView" class="btn btn-default btn-block">Go To Tasks</a>
+                                    }
+                                    <a href="~/Account/EditProfile" class="btn btn-default btn-block">Edit Account</a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <div class="navbar-user">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p>
+                                        <a href="javascript:document.getElementById('logoff').submit()" class="btn btn-default btn-block">
+                                            <i class="glyphicon glyphicon-log-out"></i>
+                                            Sign out
+                                        </a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    }
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li>
+            <a href="@Url.Action("MyOrder", "AddToCart")" style="background-color:darkred">
+                <span class="glyphicon glyphicon-shopping-cart" style="color:bisque;font-size:x-large;"></span>
+                <span class="badge">@Session["count"]</span>
+            </a>
+        </li>
+        <li>
+            <a href="~/Account/Login">
+                <i class="glyphicon glyphicon-log-in"></i>
+                Login
+            </a>
+        </li>
+        <li>
+            <a href="~/Account/Register">
+                <i class="glyphicon glyphicon-user"></i>
+                Sign up
+            </a>
+        </li>
+    </ul>
+}
+

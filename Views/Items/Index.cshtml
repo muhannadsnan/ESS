@@ -1,0 +1,184 @@
+﻿@model IEnumerable<Eyewear_Store_System.Models.Item>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h2>Items</h2>
+<hr />
+@using (Html.BeginForm("Search", "Items", FormMethod.Post))
+{
+    <div class="row">
+        <div class="col-md-offset-1 col-md-5">
+            <div class="form-group">
+                <input type="text" name="searchName" class="form-control" placeholder="Search for item by model number, brand, color, type or gender ...">
+            </div>
+        </div>
+        <div class="col-md-2">
+            <input type="submit" value="Search" class="btn btn-default btn-block" />
+        </div>
+        @if (User.IsInRole("Admins"))
+        {
+            <div class="col-md-2">
+                <a class="btn btn-default btn-block" href=@Url.Action("Create","Items")>
+                    <span class="glyphicon glyphicon-plus-sign"></span> Create New Item
+                </a>
+            </div>
+        }
+        
+    </div>
+}
+@if (Model != null && Model.Count() > 0)
+{
+
+        <table class="table table-hover">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.ItemType.CategoryName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.BrandName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ModelNumber)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Color)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FrameMaterial)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FrameDesign)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LensMaterial)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LensDesign)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Gender)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Price)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ItemImage)
+                </th>
+                <th></th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ItemType.CategoryName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BrandName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ModelNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Color)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FrameMaterial)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FrameDesign)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LensMaterial)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LensDesign)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Gender)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                    <td>
+                        <img src="~/Uploads/@Html.DisplayFor(modelItem => item.ItemImage)"
+                             class="thumbnail"
+                             style="width:80px ; height:48px" />
+                    </td>
+                    <td>
+                        @if (User.IsInRole("Admins"))
+                        {
+                            <a title="Edit" href=@Url.Action("Edit", new { id = item.Id })>
+                                <span class="glyphicon glyphicon glyphicon-edit" style="font-size:large"></span>
+                            </a> 
+                            <i>|</i>
+                        }
+                        
+                        <a title="Details" href=@Url.Action("Details", new { id = item.Id })>
+                            <span class="glyphicon glyphicon glyphicon-list-alt" style="font-size:large"></span>
+                        </a>
+                        @if (User.IsInRole("Admins"))
+                        {
+                             <i>|</i>
+                        <a title="Delete" href=@Url.Action("Delete", new { id = item.Id }) onclick="return confirm('Are you sure you want to delete this item?')">
+                            <span class="glyphicon glyphicon glyphicon-trash" style="font-size:large"></span>
+                        </a>
+                        }
+                    </td>
+                </tr>
+            }
+        </table>
+    }
+    else
+    {
+        <div class="alert alert-danger">
+            <h4 style="font-weight:bolder">
+            <span class="glyphicon glyphicon-remove">
+                </span> No rows to display!
+            </h4>
+        </div>
+    }
+
+@switch ((string)ViewBag.Result)
+{
+    case "Created":
+        {
+            <div class="alert alert-success" id="error-div">
+                <span class="glyphicon glyphicon-ok"></span>
+                <span>
+                    The item has been created successfully.
+                </span>
+            </div>
+        }
+        break;
+    case "Edited":
+        {
+            <div class="alert alert-success" id="error-div">
+                <span class="glyphicon glyphicon-ok"></span>
+                <span>
+                    The item has been edited successfully.
+                </span>
+            </div>
+        }
+        break;
+    case "Deleted":
+        {
+            <div class="alert alert-success" id="error-div">
+                <span class="glyphicon glyphicon-ok"></span>
+                <span>
+                    The item has been deleted successfully.
+                </span>
+            </div>
+        }
+        break;
+}
+
+@section scripts{
+    <script>
+        $(document).ready( function() {
+            $("#error-div").delay(3000).fadeOut();
+        });
+    </script>
+}

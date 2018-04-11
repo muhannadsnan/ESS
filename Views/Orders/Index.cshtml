@@ -1,0 +1,196 @@
+﻿@model IEnumerable<Eyewear_Store_System.Models.Order>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h2>Orders</h2>
+<hr />
+@using (Html.BeginForm("Search", "Orders", FormMethod.Post))
+{
+    <div class="row">
+        <div class="col-md-2">
+            <div class="form-group">
+                <input type="search" name="OrderId" placeholder="Order Number" class="form-control" />
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <input type="search" name="UserName" placeholder="User Name" class="form-control">
+            </div>
+            <div class="form-group">
+                <input type="search" name="ModelNumber" placeholder="Model Number" class="form-control">
+            </div>
+        </div><div class="col-md-3">
+            <div class="form-group input-group">
+                <strong class="input-group-addon">From:</strong> <input type="date" name="FromDate" class="form-control " />
+            </div>
+
+            <div class="form-group input-group">
+                <strong class="input-group-addon">To:&nbsp;&nbsp;&nbsp;&nbsp; </strong> <input type="date" name="ToDate" class="form-control" />
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                @Html.DropDownList("AllStatus", null, htmlAttributes: new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @if (User.IsInRole("Admins"))
+                {
+                    @Html.DropDownList("BranchId", null, htmlAttributes: new { @class = "form-control" })
+                }
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <input type="submit" value="Search" class="btn btn-default btn-block" />
+            </div>
+        </div>
+    </div>
+}
+@if (Model != null && Model.Count() > 0)
+{
+    <table class="table table-hover">
+        <tr>
+            <th>
+                @Html.DisplayName("Order No")
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User.UserName)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Item.ModelNumber)
+            </th>
+
+            <th>
+                @Html.DisplayName("Item Description")
+            </th>
+            @if (User.IsInRole("Admins"))
+                {
+                <th>
+                    @Html.DisplayNameFor(model => model.Branch.BranchName)
+                </th>
+            }
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.UserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Item.ModelNumber)
+                </td>
+                <td>
+                    @Html.DisplayName(item.Item.Color+" "+item.Item.ItemType.CategoryName+" "+item.Item.BrandName)
+                </td>
+                @if (User.IsInRole("Admins"))
+                    {
+                    <td>
+                        @Html.DisplayFor(model => item.Branch.BranchName)
+                    </td>
+                }
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @if (User.IsInRole("Employees"))
+                    {
+                        <a title="Edit" href=@Url.Action("Edit", new { id = item.Id })>
+                            <span class="glyphicon glyphicon glyphicon-edit" style="font-size:large"></span>
+                        </a>
+                    }
+                    @if (User.IsInRole("Admins"))
+                    {
+
+                        <a title="Edit" href=@Url.Action("Edit", new { id = item.Id })>
+                            <span class="glyphicon glyphicon glyphicon-edit" style="font-size:large"></span>
+                        </a><i> | </i>
+                             <a title="Delete" href=@Url.Action("Delete", new { id = item.Id }) onclick="return confirm('Are you sure you want to delete this order?')">
+                            <span class="glyphicon glyphicon glyphicon-trash" style="font-size:large"></span>
+                        </a>
+
+                    }
+                </td>
+            </tr>
+        }
+    </table>
+}
+else
+{
+    <div class="alert alert-danger">
+        <h4 style="font-weight:bolder">
+            <span class="glyphicon glyphicon-remove">
+            </span> No rows to display!
+        </h4>
+    </div>
+}
+@switch ((string)ViewBag.Result)
+{
+    case "Edited":
+        {
+            <div class="alert alert-success" id="error-div">
+                <span class="glyphicon glyphicon-ok"></span>
+                <span>
+                    The order has been edited successfully.
+                </span>
+            </div>
+        }
+        break;
+    case "Deleted":
+        {
+            <div class="alert alert-success" id="error-div">
+                <span class="glyphicon glyphicon-ok"></span>
+                <span>
+                    The order has been deleted successfully.
+                </span>
+            </div>
+        }
+        break;
+    case "Error":
+        {
+            <div class="alert alert-danger" id="error-div">
+                <span class="glyphicon glyphicon-remove"></span>
+                <span>
+                    You can not delete this order!
+                </span>
+            </div>
+        }
+        break;
+}
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $("#error-div").delay(3000).fadeOut();
+        });
+    </script>
+}
+
+

@@ -1,0 +1,40 @@
+﻿@{
+    ViewBag.Title = "ManagerTasksView";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+<h2>Manager Tasks List</h2>
+<hr />
+<div class="list-group">
+    <div class="row">
+        <div class="col-md-offset-2 col-md-4">
+            @Html.ActionLink("Go To Users", "Index", "ApplicationUsers", null, new { @class = "list-group-item" })
+        </div>
+        <div class="col-md-4">
+            @Html.ActionLink("Go To Items", "Index", "Items", null, new { @class = "list-group-item" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-offset-2 col-md-4">
+            @Html.ActionLink("Go To Invoices", "Index", "Invoices", null, new { @class = "list-group-item" })
+        </div>
+        <div class="col-md-4">
+            @Html.ActionLink("Go To Orders", "Index", "Orders", null, new { @class = "list-group-item" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-offset-2 col-md-4">
+            @Html.ActionLink("Go To Branches", "Index", "Branches", null, new { @class = "list-group-item" })
+        </div>
+        <div class="col-md-4">
+            @Html.ActionLink("Go To Categories", "Index", "Categories", null, new { @class = "list-group-item" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-offset-2 col-md-4">
+            @Html.ActionLink("Go To Insurances", "Index", "Insurances", null, new { @class = "list-group-item" })
+        </div>
+        <div class="col-md-4">
+            @Html.ActionLink("Go To Quantities", "Index", "Quantities", null, new { @class = "list-group-item" })
+        </div>
+    </div>
+</div>

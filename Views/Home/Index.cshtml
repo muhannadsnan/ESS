@@ -1,0 +1,29 @@
+﻿@model IEnumerable< Eyewear_Store_System.Models.Category>
+@{
+    ViewBag.Title = "Home Page";
+}
+<div>
+    <h1>Eyewear Store System</h1>
+</div>
+@foreach (var item in Model)
+{
+    <div>
+        <h1>@Html.DisplayFor(modelItem => item.CategoryName)</h1>
+        <div class="row">
+            @foreach (var subItem in item.Items)
+            {
+                <div class="col-md-3 thumbnail myDiv">
+                    <img src="~/Uploads/@subItem.ItemImage"  style="height:220px" />                    
+                    <h3>@Html.DisplayFor(modelItem => subItem.BrandName)</h3>
+                    <h5>@Html.DisplayFor(modelItem => subItem.ModelNumber)</h5>
+                    <div class="row">
+                        <div class="col-md-offset-2 col-md-8">
+                            @Html.ActionLink("Details", "Details","Items", new { id = subItem.Id }, new { @class = "btn btn-default btn-block" })
+                        </div>
+                    </div>
+                    
+                </div>
+            }
+        </div>
+    </div>
+}

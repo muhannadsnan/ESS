@@ -1,0 +1,260 @@
+﻿body {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: medium;
+    background-image: url('../Images/background.jpeg');
+    color: darkred;
+    padding-top: 55px;
+    margin-bottom: 140px;
+}
+.alert-danger{
+    width:60%;
+    margin:0 auto;
+}
+.alert-success{
+    width:60%;
+    margin:0 auto;
+}
+.navbar-default {
+    background-color: darkred;
+}
+
+    .navbar-default .navbar-nav > li > a,
+    .navbar-default .navbar-nav > li > a:focus {
+        color: bisque;
+    }
+        .navbar-default .navbar-nav > li > a:hover {
+            font-style: oblique;
+            text-decoration: underline;
+            color: bisque;
+        }
+
+    .navbar-default .navbar-toggle,
+    .navbar-default .navbar-toggle:focus {
+        background-color: darkred;
+    }
+
+        .navbar-default .navbar-toggle:hover {
+            background-color: bisque;
+        }
+
+        .navbar-default .navbar-toggle .icon-bar {
+            background-color: burlywood;
+        }
+
+    .navbar-default .navbar-nav > .open > a,
+    .navbar-default .navbar-nav > .open > a:focus,
+    .navbar-default .navbar-nav > .open > a:hover {
+        color: bisque;
+        background-color: darkred;
+    }
+
+.navbar-nav > li > .dropdown-menu {
+    background-color: beige;
+}
+
+.myfooter {
+    background-color: darkred;
+    color: bisque;
+    padding-top: 10px;
+    text-align: center;
+}
+
+.logo-size {
+    width: 120px;
+    height: 35px;
+    margin-top: -6px;
+}
+
+hr {
+    border-top: 2px solid darkred;
+    width: 80%;
+}
+.table{
+    width:auto;
+    min-width:50%;
+    margin-right:auto;
+    margin-left:auto;
+}
+
+.myDiv {
+    height: 350px;
+    background: none;
+    text-align: center;
+    border-color: darkred;
+    margin: 6px;
+}
+
+@media (min-width: 992px) {
+    .col-md-3 {
+        width: 24%;
+    }
+}
+
+#searchName {
+    width: 130px;
+    border: 2px solid bisque;
+    border-radius: 5px;
+    margin-top: 10px;
+    background-color: white;
+    transition: width 0.4s ease-in-out;
+}
+
+    #searchName:focus {
+        width: 100%;
+    }
+
+.navbar-user {
+    padding: 10px;
+    padding-bottom: 0px;
+    width: 200px;
+}
+
+.list-group-item:last-child,
+.list-group-item:last-child:focus {
+    margin-bottom: 10px;
+    border-radius: 5px;
+    color: bisque;
+    font-size: larger;
+    background-color: darkred;
+    text-align: center;
+}
+
+    .list-group-item:last-child:hover {
+        margin-bottom: 10px;
+        border-radius: 5px;
+        color: bisque;
+        font-size: larger;
+        background-color: darkred;
+        font-style: oblique;
+        text-decoration: underline;
+    }
+/*Create Invoice*/
+#app {
+    position: relative;
+    overflow: hidden;
+}
+
+.apploader {
+    z-index: 9999;
+    position: absolute;
+    left: 50%;
+}
+
+.loaded {
+    z-index: -9999;
+}
+
+label {
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    line-height: 35px;
+}
+
+h3 {
+    margin-top: 12px;
+}
+
+span.del {
+    color: red;
+    cursor: pointer;
+    padding: 5px;
+}
+
+._bold {
+    font-weight: bolder;
+}
+
+.mt-5 {
+    margin-top: 50px;
+}
+
+.top--135 {
+    top: -135px !important;
+}
+
+.input-group input[type="number"] {
+    padding: 1px;
+    text-align: center;
+}
+
+.input-group span {
+    padding: 5px;
+    background-color: #f7f7f7;
+}
+
+.animate1 {
+    position: relative;
+    top: -30px;
+    opacity: 0;
+    z-index: -999;
+    height: 0px;
+}
+
+.animate11 {
+    position: relative;
+    top: -70px;
+    opacity: 0;
+    z-index: -999;
+    height: 0px;
+}
+
+.animate2 {
+    position: relative;
+    top: 0;
+    opacity: 1;
+    z-index: 1;
+    height: auto;
+    transition: opacity,top .6s;
+    -webkit-transition: opacity,top .6s;
+    -moz-transition: opacity,top .6s;
+    -ms-transition: opacity,top .6s;
+    -o-transition: opacity,top .6s;
+}
+
+.animate22 {
+    position: relative;
+    top: 0;
+    opacity: 1;
+    z-index: 1;
+    height: auto;
+    transition: opacity,top .5s;
+    -webkit-transition: opacity,top .5s;
+    -moz-transition: opacity,top .5s;
+    -ms-transition: opacity,top .5s;
+    -o-transition: opacity,top .5s;
+}
+
+[v-cloak] {
+    display: none;
+}
+
+.animate-submitted0 {
+    position: relative;
+    top: -1px;
+    right: -1px;
+    transition: all .5s ease, right 2s ease .5s, opacity .5s ease .5s, -webkit-transform 1s .5s;
+    -webkit-transition: all .5s ease, right 2s ease .5s, opacity .5s ease .5s, -webkit-transform 1s .5s;
+}
+
+.animate-submitted1 {
+    position: relative;
+    top: -100px;
+    width: 270px;
+    transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    opacity: 0;
+    right: -1000px;
+}
+/**
+    li.fixtures:hover +  li.hidden{
+        display: block;
+    }*/
+input[type='number']#client_phone {
+    -moz-appearance: textfield;
+}
+
+#client_phone::-webkit-outer-spin-button, #client_phone::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+/**END Create invoice*/

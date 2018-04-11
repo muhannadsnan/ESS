@@ -1,0 +1,158 @@
+﻿@model Eyewear_Store_System.Models.Item
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h2>Create Item</h2>
+
+@using (Html.BeginForm("Create","Items",FormMethod.Post,new { enctype="multipart/form-data"}))
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+     
+        <div class="alert alert-danger" id="error-div" style="display:none">
+            <span id="view-err">
+
+            </span>
+        </div>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.BrandName, htmlAttributes: new { @class = "control-label col-md-2 col-md-offset-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.BrandName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.BrandName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CategoryId, null, htmlAttributes: new { @class = "control-label col-md-2 col-md-offset-2" })
+            <div class="col-md-4">
+                @Html.DropDownList("CategoryId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ModelNumber, htmlAttributes: new { @class = "control-label col-md-2 col-md-offset-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.ModelNumber, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ModelNumber, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ItemImage, htmlAttributes: new { @class = "control-label col-md-2 col-md-offset-2" })
+            <div class="col-md-4">
+                <input type="file" name="upload" id="myImage" />
+                @Html.ValidationMessageFor(model => model.ItemImage, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Color, htmlAttributes: new { @class = "control-label col-md-2 col-md-offset-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.Color, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Color, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.FrameMaterial, htmlAttributes: new { @class = "control-label col-md-2 col-md-offset-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.FrameMaterial, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.FrameMaterial, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.FrameDesign, htmlAttributes: new { @class = "control-label col-md-2 col-md-offset-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.FrameDesign, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.FrameDesign, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.LensMaterial, htmlAttributes: new { @class = "control-label col-md-2 col-md-offset-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.LensMaterial, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.LensMaterial, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.LensDesign, htmlAttributes: new { @class = "control-label col-md-2 col-md-offset-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.LensDesign, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.LensDesign, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Gender, htmlAttributes: new { @class = "control-label col-md-2 col-md-offset-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.Gender, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2 col-md-offset-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-2">
+                <a href="Items" class="btn btn-default btn-block">
+                    <span class="glyphicon glyphicon-arrow-left"></span> Back to Items List
+                </a>
+            </div>
+            <div class="col-md-offset-3 col-md-2">
+                <button type="submit" value="Create" id="create" class="btn btn-default btn-block">
+                    <span class="glyphicon glyphicon-plus-sign"></span> Create
+                </button>
+            </div>
+        </div>
+    </div>
+}
+
+@section scripts{
+    <script>
+        $(function () {
+            $("#create").click(function () {
+
+                //Check if the image is exist.
+                if ($("#myImage").val() == "") {
+                    $("#error-div").fadeIn();
+                    $("#view-err").html("You must select an image file.");
+                    return false;
+                }
+
+                //Check if the image extension is valid.
+                if ($("#myImage").val() != "") {
+                    var filename = document.getElementById("myImage").value;
+                    var extensionImg = filename.substr(filename.lastIndexOf('.') + 1);
+                    var validExtension = ['jpg', 'jpeg', 'png', 'gif', 'pmb'];
+                    if ($.inArray(extensionImg, validExtension) == -1) {
+                        $("#error-div").fadeIn();
+                        $("#view-err").html("You must select an image file.");
+                        return false;
+                    }
+
+                    //Check if the image size is valid(2MB).
+                    var myFileSize = document.getElementById("myImage").files[0].size / 1024 / 1024;
+                    if (myFileSize > 2) {
+                        $("#error-div").fadeIn();
+                        $("#view-err").html("You must select an image file smaller than 2MB.");
+                        return false;
+                    }
+                }
+            });
+        });
+    </script>
+}

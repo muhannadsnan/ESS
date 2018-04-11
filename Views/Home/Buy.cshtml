@@ -1,0 +1,109 @@
+﻿@model Eyewear_Store_System.Models.Order
+
+@{
+    ViewBag.Title = "Buy";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h2>Buy Item</h2>
+<hr />
+    @if (ViewBag.Result == null)
+    {
+        using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    <div class="col-md-offset-4 col-md-4">
+                        <img src="~/Uploads/@Html.Display("ItemImage")"
+                             class="thumbnail" style="margin:auto" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.Label("Branch Name", htmlAttributes: new { @class = "control-label col-md-2 col-md-offset-2" })
+                    <div class="col-md-4">
+                        @Html.DropDownList("BranchId", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessage("ItemBranch", "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.Label("Quantity", htmlAttributes: new { @class = "control-label col-md-2 col-md-offset-2" })
+                    <div class="col-md-4">
+                        <input type="number" name="Quantity" id="myQuantity" value="1" min="1" class="form-control" />
+                        @Html.ValidationMessage("Quantity", "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("Price", htmlAttributes: new { @class = "control-label col-md-2 col-md-offset-2" })
+                    <div class="col-md-4">
+                        <p id="myP" style="font-weight:bolder;font-size:larger;text-align:left">@ViewBag.ItemPrice</p>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-2">
+                        <a href="Home" class="btn btn-default btn-block">
+                            <span class="glyphicon glyphicon-arrow-left"></span> Back to Home page
+                        </a>
+                    </div>
+                    <div class="col-md-offset-2 col-md-2">
+                        <input type='submit' value="Add To Cart" class="btn btn-default btn-block" formaction="@Url.Action("Add", "Cart", Model)" />
+                    </div>
+                    <div class="col-md-2">
+                        <input type="submit" value="Buy" class="btn btn-default btn-block" />
+                    </div>
+                    </div>
+                </div>
+        }
+    }
+    else
+    {
+        if (ViewBag.Result != "Added")
+        {
+        <h3>@ViewBag.Result</h3>
+        <div class="row">
+            <div class="pay col-md-2 col-md-offset-5">
+                <form action="@Url.Action("Pay", "Home")" method="POST">
+                    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button" id="stripebutton"
+                            data-key="pk_test_2ETmRGFhL3TcVHaTtkbNmsr2"
+                            data-amount="@ViewBag.Amount"
+                            data-name="@ViewBag.Name"
+                            data-description="@ViewBag.Description"
+                            data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+                            data-locale="auto">
+                    </script>
+                </form>
+            </div>
+            </div>
+        }
+        else
+        {
+        <h3>Thanks, you will receive an email with your order number</h3>
+        }
+        <div class="row">
+            <div class="col-md-2">
+                <a href="Home" class="btn btn-default btn-block">
+                    <span class="glyphicon glyphicon-arrow-left"></span> Back to Home Page
+                </a>
+            </div>
+        </div>
+    }
+
+
+
+@section scripts{
+    <script>
+        $(function () {
+            $("#myQuantity").change(function () {
+                var price=@ViewBag.ItemPrice;
+                var quantity=document.getElementById("myQuantity").value;
+                var newPrice=price*quantity;
+                document.getElementById("myP").innerHTML = newPrice;
+            });
+        });
+    </script>
+}

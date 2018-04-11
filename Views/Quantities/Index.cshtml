@@ -1,0 +1,166 @@
+﻿@model IEnumerable<Eyewear_Store_System.Models.Quantity>
+@using WebApplication1.Models;
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h2>Quantities</h2>
+<hr />
+@using (Html.BeginForm("Search", "Quantities", FormMethod.Post))
+{
+    <div class="row">
+        <div class="col-md-2">
+            <div class="form-group">
+                <input type="search" name="ModelNumber" placeholder="Model Number" class="form-control">
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <input type="search" name="Description" placeholder="Description" class="form-control">
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                @Html.DropDownList("BranchId", null, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <button type="submit" value="Search" class="btn btn-default btn-block">
+                    <span class="glyphicon glyphicon-search"></span> Search
+                </button>
+            </div>
+        </div>
+        @if (User.IsInRole("Admins"))
+        {
+            <div class="col-md-2">
+                <a class="btn btn-default btn-block" href="Quantities/Create">
+                    <span class="glyphicon glyphicon-plus-sign"></span> Add New Quantity
+                </a>
+            </div>
+        }
+    </div>
+}
+@if (Model != null && Model.Count() > 0)
+{
+    <table class="table table-hover">
+        <tr>
+            <th>
+                @Html.DisplayName("Model Number")
+            </th>
+            <th>
+                @Html.DisplayName("Item Description")
+            </th>
+            <th>
+                @Html.DisplayName("Branch Name")
+            </th>
+            <th>
+                @Html.DisplayName("Quantity")
+            </th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @{
+                        ApplicationDbContext db = new ApplicationDbContext();
+                        var Item = db.Items.Find(item.ItemId);
+                        @Html.ActionLink(Item.ModelNumber, "Details", "Items", new { id = Item.Id }, new { title = "Go to item" })
+
+                    }
+                </td>
+                <td>
+                    @{
+                        string itemDescription = Item.Color + " " + Item.ItemType.CategoryName + " " + Item.BrandName;
+                        @Html.DisplayName(itemDescription)
+                    }
+                </td>
+                <td>
+                    @{
+                        var BranchName = db.Branches.Find(item.BranchId).BranchName;
+                        @Html.DisplayName(BranchName)
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ItemQuantity)
+                </td>
+                @if (User.IsInRole("Admins"))
+                    {
+                    <td>
+                        <a title="Edit" href=@Url.Action("Edit", new { ItemId = item.ItemId, BranchId=item.BranchId })>
+                            <span class="glyphicon glyphicon glyphicon-edit" style="font-size:large"></span>
+                        </a> |
+                        <a title="Delete" href=@Url.Action("Delete", new { ItemId = item.ItemId, BranchId = item.BranchId }) onclick="return confirm('Are you sure you want to delete this quantity?')">
+                            <span class="glyphicon glyphicon glyphicon-trash" style="font-size:large"></span>
+                        </a>
+                    </td>
+                }
+            </tr>
+                        }
+    </table>
+                        }
+                        else
+                        {
+                            <div class="alert alert-danger">
+                                <h4 style="font-weight:bolder">
+                                    <span class="glyphicon glyphicon-remove">
+                                    </span> No rows to display!
+                                </h4>
+                            </div>
+                        }
+
+@switch ((string)ViewBag.Result)
+{
+    case "Created":
+        {
+            <div class="alert alert-success" id="error-div">
+                <span class="glyphicon glyphicon-ok"></span>
+                <span>
+                    The quantity has been added successfully.
+                </span>
+            </div>
+        }
+        break;
+    case "Edited":
+        {
+            <div class="alert alert-success" id="error-div">
+                <span class="glyphicon glyphicon-ok"></span>
+                <span>
+                    The quantity has been edited successfully.
+                </span>
+            </div>
+        }
+        break;
+    case "Deleted":
+        {
+            <div class="alert alert-success" id="error-div">
+                <span class="glyphicon glyphicon-ok"></span>
+                <span>
+                    The quantity has been deleted successfully.
+                </span>
+            </div>
+        }
+        break;
+    case "Error":
+        {
+            <div class="alert alert-danger" id="error-div">
+                <span class="glyphicon glyphicon-remove"></span>
+                <span>
+                    You can not delete this quantity!
+                </span>
+            </div>
+        }
+        break;
+}
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $("#error-div").delay(3000).fadeOut();
+        });
+    </script>
+}

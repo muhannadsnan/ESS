@@ -1,0 +1,103 @@
+﻿@model IEnumerable<Eyewear_Store_System.Models.Insurance>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+<h2>Insurances</h2>
+<hr />
+@if (User.IsInRole("Admins")) {
+    <div class="row">
+        <div class="col-md-offset-5 col-md-2">
+            <div class="form-group">
+                <a class="btn btn-default btn-block" href="Insurances/Create">
+                    <span class="glyphicon glyphicon-plus-sign"></span> Create New Insurance
+                </a>
+            </div>
+        </div>
+    </div>
+}
+@if (Model != null && Model.Count() > 0)
+{
+    <table class="table table-hover">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Discount)
+            </th>
+            @if (User.IsInRole("Admins"))
+            {
+                <th></th>
+            }
+        </tr>
+        @foreach (var item in Model)
+                {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Discount)
+                </td>
+                @if (User.IsInRole("Admins"))
+                {
+                    <td>
+                        <a title="Delete" href=@Url.Action("Delete", new { id = item.Id }) onclick="return confirm('Are you sure you want to delete this insurance?')">
+                            <span class="glyphicon glyphicon glyphicon-trash" style="font-size:large"></span>
+                        </a>
+                    </td>
+                }
+            </tr>
+        }
+    </table>
+}
+else
+{
+    <div class="alert alert-danger">
+        <h4 style="font-weight:bolder">
+            <span class="glyphicon glyphicon-remove">
+            </span> No rows to display!
+        </h4>
+    </div>
+}
+@switch ((string)ViewBag.Result)
+{
+    case "Created":
+        {
+            <div class="alert alert-success" id="error-div">
+                <span class="glyphicon glyphicon-ok"></span>
+                <span>
+                    The insurance has been created successfully.
+                </span>
+            </div>
+        }
+        break;
+    case "Deleted":
+        {
+            <div class="alert alert-success" id="error-div">
+                <span class="glyphicon glyphicon-ok"></span>
+                <span>
+                    The insurance has been deleted successfully.
+                </span>
+            </div>
+        }
+        break;
+    case "Error":
+        {
+            <div class="alert alert-danger" id="error-div">
+                <span class="glyphicon glyphicon-remove"></span>
+                <span>
+                    You can not delete this insurance!
+                </span>
+            </div>
+        }
+        break;
+}
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $("#error-div").delay(3000).fadeOut();
+        });
+    </script>
+}
