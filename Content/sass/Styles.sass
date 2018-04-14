@@ -2,8 +2,6 @@
 
 a
     +transition(all 350ms ease-out)
-    
-
 .navbar 
     .navbar-brand 
         img  
@@ -31,8 +29,11 @@ a
             margin: 0
             top: -20px
             position: relative
-           
-
+    .collapse.navbar-collapse
+        .nav-link
+            color: $primary-color
+            &:hover
+                color: lighten($primary-color, 15%) 
 .alert
     padding: 10px
     width: 100%
@@ -41,18 +42,14 @@ a
             color: #ccc
         a:hover
             color: #fff
-
 .btn-primary
     background: $primary-color
-
 .card
     .card-footer
         padding: 0px
-
 h1, h2, h3, h4, h5, h6,.h1, .h2, .h3, .h4, .h5, .h6
     padding: 0 !important
     margin: 10px !important
-
 .index-page .page-header
     background-repeat: no-repeat
     background-size: 100% $page-header-height
@@ -62,10 +59,19 @@ h1, h2, h3, h4, h5, h6,.h1, .h2, .h3, .h4, .h5, .h6
         font-size: 50px
     .desc
         max-width: unset
-    
 .section
     padding: 0px 0px
-
 .main-raised
     padding: 10px 0px
+#carousel
+    .carousel-inner
+        .carousel-item
+            img
+                height: 475px !important
+                width: 100% !important
+.height300px
+    height: 22vh !important
+.marginTop30-
+    margin-top: -30px !important
+
 

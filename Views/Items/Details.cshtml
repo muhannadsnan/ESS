@@ -12,17 +12,17 @@
     </h3>
 </div>
 
-<div class="col-xs-12 col-md-8 offset-md-2">
+<div class="col-xs-12 col-md-10 col-lg-8 mx-auto">
     <div class="card" >
         <img class="card-img-top" src="~/Uploads/@Html.DisplayFor(model => model.ItemImage)" alt="Card image cap">
         <div class="card-body">
-            <span class="card-title row">
-                <span class="titleX h3 text-primary text-left col-sm-8">TITLE</span>            
-                <span class="titleX h3 text-primary text-right col-sm-3">@Html.DisplayFor(model => model.Price) SAR</span>            
+            <span class="card-title d-flex justify-content-between">
+                <span class="titleX h3 text-primary col-8x">TITLE</span>            
+                <span class="titleX h3 text-primary col-3x">@Html.DisplayFor(model => model.Price) SAR</span>            
             </span>
             
             <p class="card-text text-left">DESCRIPTION: Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <dl class="dl-horizontal row d-lg-none d-xl-none text-left">
+            <dl class="dl-horizontal row d-lg-none text-left">
                 <div class="col-md-6">
                     <dt>
                         @Html.DisplayNameFor(model => model.ItemType.CategoryName)
@@ -54,14 +54,15 @@
                     <dd>
                         @Html.DisplayFor(model => model.FrameMaterial)
                     </dd>
+                </div>
+                <div class="col-md-6">
+                    
                     <dt>
                         @Html.DisplayNameFor(model => model.FrameDesign)
                     </dt>
                     <dd>
                         @Html.DisplayFor(model => model.FrameDesign)
                     </dd>
-                </div>
-                <div class="col-md-6">
                     <dt>
                         @Html.DisplayNameFor(model => model.LensMaterial)
                     </dt>
@@ -91,21 +92,14 @@
                             @Html.DisplayName(@quantity)
                         }   |
                         @{
-                            @Html.ActionLink("Click here for Quantity details", "GetQuantityByItem", "Quantities", new { id = Model.Id }, null)
+                            @Html.ActionLink("More details", "GetQuantityByItem", "Quantities", new { id = Model.Id }, null)
                         }
-                    </dd>
-                    <dt>
-                        @Html.DisplayNameFor(model => model.Price)
-                    </dt>
-
-                    <dd>
-                        @Html.DisplayFor(model => model.Price)
                     </dd>
                 </div>
             </dl>
 
-            <dl class="dl-horizontal row d-noneX d-lg-blockX d-xl-blockX text-left">
-                <div class="col-lg-3">
+            <dl class="d-none d-lg-inline-flex text-left col-12 px-0">
+                <div class="col-lg-4 ">
                     <dt>
                         @Html.DisplayNameFor(model => model.ItemType.CategoryName)
                     </dt>
@@ -125,7 +119,7 @@
                         @Html.DisplayFor(model => model.ModelNumber)
                     </dd>
                 </div>
-                <div class="col-lg-3">
+                <div class="col-lg-4 ">
                     <dt>
                         @Html.DisplayNameFor(model => model.Color)
                     </dt>
@@ -145,7 +139,7 @@
                         @Html.DisplayFor(model => model.FrameDesign)
                     </dd>
                 </div>
-                <div class="col-lg-3">
+                <div class="col-lg-4 ">
                     <dt>
                         @Html.DisplayNameFor(model => model.LensMaterial)
                     </dt>
@@ -164,8 +158,6 @@
                     <dd>
                         @Html.DisplayFor(model => model.Gender)
                     </dd>
-                </div>
-                <div class="col-lg-3">
                     <dt>
                         @Html.DisplayName("Quantity")
                     </dt>
@@ -177,14 +169,16 @@
                             @Html.DisplayName(@quantity)
                         }   |
                         @{
-                            @Html.ActionLink("Click here for Quantity details", "GetQuantityByItem", "Quantities", new { id = Model.Id }, null)
+                            @Html.ActionLink("More details", "GetQuantityByItem", "Quantities", new { id = Model.Id }, null)
                         }
                     </dd>
-                    
                 </div>
             </dl>
-            <a href="~/Items" class="btn btn-default">Back to Items List</a>
-            <a href="~/Buy/@Model.Id" class="btn btn-primary">Buy / Add to Cart</a>
+
+             <div class="row d-flex justify-content-between">
+                <a href="~/Items" class="btn btn-default">Back to Items List</a>
+                <a href="~/Buy/@Model.Id" class="btn btn-primary pull-right">Buy / Add to Cart</a>
+             </div>
         </div>
     </div>
 </div>

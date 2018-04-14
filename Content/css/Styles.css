@@ -29,6 +29,11 @@ a {
   top: -20px;
   position: relative; }
 
+.navbar-transparent .collapse.navbar-collapse .nav-link {
+  color: #9c27b0; }
+  .navbar-transparent .collapse.navbar-collapse .nav-link:hover {
+    color: #c34cd7; }
+
 .alert {
   padding: 10px;
   width: 100%; }
@@ -62,3 +67,13 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 
 .main-raised {
   padding: 10px 0px; }
+
+#carousel .carousel-inner .carousel-item img {
+  height: 475px !important;
+  width: 100% !important; }
+
+.height300px {
+  height: 22vh !important; }
+
+.marginTop30- {
+  margin-top: -30px !important; }

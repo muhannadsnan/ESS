@@ -69,16 +69,23 @@
     </nav>
 
 
-@if (ViewContext.RouteData.Values["controller"].ToString() == "Home")
+@{
+    ViewBag.height = "";
+    ViewBag.display = "";
+    ViewBag.marginTop30 = "";
+}
+@if (ViewContext.RouteData.Values["controller"].ToString() != "Home")
     {
-        String @height = "height300px";
+        ViewBag.height = "height300px";
+        ViewBag.display = "d-none";
+        ViewBag.marginTop30 = "marginTop30-";
     }
     <!-- if home page show this div in the master page-->
-    <div class="page-header header-filter clear-filter purple-filter " data-parallax="true">
+    <div class="page-header header-filter clear-filter @ViewBag.height purple-filter " data-parallax="true">
             <div class="container">
                 <div class="row">
                     <div class="col-md-8 ml-auto mr-auto">
-                        <div class="brand">
+                        <div class="brand @ViewBag.display">
                             <h2 class="title">Eyewear Store System</h2>
                             <h3 class="desc">Saudi Arabis's biggest online eyewear store, under your service!</h3>
                         </div>
@@ -88,7 +95,7 @@
     </div>
 
 
-    <div class="main main-raised" id="main-body">
+    <div class="main main-raised @ViewBag.marginTop30 col-sm-11 col-md-10 col-lg-9 col-xl-8 ml-auto mr-auto" id="main-body">
         <!--Render Body-->
         <div class="container text-center">
             <div class="row">
