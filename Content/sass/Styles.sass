@@ -1,0 +1,55 @@
+@import "variables"
+
+a
+    +transition(all 350ms ease-out)
+    
+
+.navbar .navbar-nav 
+    .nav-item 
+        .nav-link
+            color: $primary-color
+            &:hover
+                color: lighten($primary-color, 15%)
+.navbar-transparent
+    .nav-item 
+        .nav-link
+            color: lighten($primary-color, 50%) !important
+            &:hover
+                color: lighten($primary-color, 30%) !important
+
+.alert
+    padding: 10px
+    width: 100%
+    &.alert-primary
+        h1,h2,h3,h4,h5,h6,a
+            color: #ccc
+        a:hover
+            color: #fff
+
+.btn-primary
+    background: $primary-color
+
+.card
+    .card-footer
+        padding: 0px
+
+h1, h2, h3, h4, h5, h6,.h1, .h2, .h3, .h4, .h5, .h6
+    padding: 0 !important
+    margin: 10px !important
+
+.index-page .page-header
+    background-repeat: no-repeat
+    background-size: 100% $page-header-height
+    height: $page-header-height 
+    background-image: url('../../Images/kit/bg2.jpg')
+    .title
+        font-size: 50px
+    .desc
+        max-width: unset
+    
+.section
+    padding: 0px 0px
+
+.main-raised
+    padding: 10px 0px
+

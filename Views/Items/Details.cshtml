@@ -4,103 +4,187 @@
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
-<h2>Item Details</h2>
-<div>
-    <hr />
-    <div class="row">
-        <div class="col-md-offset-1 col-md-6">
-            <dl class="dl-horizontal">
-                <dt>
-                    @Html.DisplayNameFor(model => model.ItemType.CategoryName)
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.ItemType.CategoryName)
-                </dd>
-                <dt>
-                    @Html.DisplayNameFor(model => model.BrandName)
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.BrandName)
-                </dd>
-                <dt>
-                    @Html.DisplayNameFor(model => model.ModelNumber)
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.ModelNumber)
-                </dd>
-                <dt>
-                    @Html.DisplayNameFor(model => model.Color)
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.Color)
-                </dd>
-                <dt>
-                    @Html.DisplayNameFor(model => model.FrameMaterial)
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.FrameMaterial)
-                </dd>
-                <dt>
-                    @Html.DisplayNameFor(model => model.FrameDesign)
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.FrameDesign)
-                </dd>
-                <dt>
-                    @Html.DisplayNameFor(model => model.LensMaterial)
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.LensMaterial)
-                </dd>
-                <dt>
-                    @Html.DisplayNameFor(model => model.LensDesign)
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.LensDesign)
-                </dd>
-                <dt>
-                    @Html.DisplayNameFor(model => model.Gender)
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.Gender)
-                </dd>
-                <dt>
-                    @Html.DisplayName("Quantity")
-                </dt>
-                <dd>
-                    @{
-                        ApplicationDbContext db = new ApplicationDbContext();
-                        var ItemId = Model.Id;
-                        var quantity = db.Items.Find(ItemId).Quantities.Select(a => a.ItemQuantity).Sum().ToString();
-                        @Html.DisplayName(@quantity)
-                    }   |
-                    @{
-                        @Html.ActionLink("Click here for Quantity details", "GetQuantityByItem", "Quantities", new { id = Model.Id }, null)
-                    }
-                </dd>
-                <dt>
-                    @Html.DisplayNameFor(model => model.Price)
-                </dt>
+<div class="alert alert-primary">
+    <h3 class="titleX">
+        <a href="~/Home/Index" class="pull-left"><i class="fas fa-arrow-alt-circle-left fa-lg"></i></a>
+        ITEM TITLE, BRAND
+        <span class="text-center pl-3"><i class="fas fa-indent fa-lg"></i></span>        
+    </h3>
+</div>
 
-                <dd>
-                    @Html.DisplayFor(model => model.Price)
-                </dd>
+<div class="col-xs-12 col-md-8 offset-md-2">
+    <div class="card" >
+        <img class="card-img-top" src="~/Uploads/@Html.DisplayFor(model => model.ItemImage)" alt="Card image cap">
+        <div class="card-body">
+            <span class="card-title row">
+                <span class="titleX h3 text-primary text-left col-sm-8">TITLE</span>            
+                <span class="titleX h3 text-primary text-right col-sm-3">@Html.DisplayFor(model => model.Price) SAR</span>            
+            </span>
+            
+            <p class="card-text text-left">DESCRIPTION: Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <dl class="dl-horizontal row d-lg-none d-xl-none text-left">
+                <div class="col-md-6">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.ItemType.CategoryName)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.ItemType.CategoryName)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.BrandName)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.BrandName)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.ModelNumber)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.ModelNumber)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Color)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Color)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.FrameMaterial)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.FrameMaterial)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.FrameDesign)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.FrameDesign)
+                    </dd>
+                </div>
+                <div class="col-md-6">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.LensMaterial)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.LensMaterial)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.LensDesign)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.LensDesign)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Gender)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Gender)
+                    </dd>
+                    <dt>
+                        @Html.DisplayName("Quantity")
+                    </dt>
+                    <dd>
+                        @{
+                            ApplicationDbContext db = new ApplicationDbContext();
+                            var ItemId = Model.Id;
+                            var quantity = db.Items.Find(ItemId).Quantities.Select(a => a.ItemQuantity).Sum().ToString();
+                            @Html.DisplayName(@quantity)
+                        }   |
+                        @{
+                            @Html.ActionLink("Click here for Quantity details", "GetQuantityByItem", "Quantities", new { id = Model.Id }, null)
+                        }
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Price)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Price)
+                    </dd>
+                </div>
             </dl>
+
+            <dl class="dl-horizontal row d-noneX d-lg-blockX d-xl-blockX text-left">
+                <div class="col-lg-3">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.ItemType.CategoryName)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.ItemType.CategoryName)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.BrandName)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.BrandName)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.ModelNumber)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.ModelNumber)
+                    </dd>
+                </div>
+                <div class="col-lg-3">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Color)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Color)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.FrameMaterial)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.FrameMaterial)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.FrameDesign)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.FrameDesign)
+                    </dd>
+                </div>
+                <div class="col-lg-3">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.LensMaterial)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.LensMaterial)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.LensDesign)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.LensDesign)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Gender)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Gender)
+                    </dd>
+                </div>
+                <div class="col-lg-3">
+                    <dt>
+                        @Html.DisplayName("Quantity")
+                    </dt>
+                    <dd>
+                        @{
+                            db = new ApplicationDbContext();
+                            ItemId = Model.Id;
+                            quantity = db.Items.Find(ItemId).Quantities.Select(a => a.ItemQuantity).Sum().ToString();
+                            @Html.DisplayName(@quantity)
+                        }   |
+                        @{
+                            @Html.ActionLink("Click here for Quantity details", "GetQuantityByItem", "Quantities", new { id = Model.Id }, null)
+                        }
+                    </dd>
+                    
+                </div>
+            </dl>
+            <a href="~/Items" class="btn btn-default">Back to Items List</a>
+            <a href="~/Buy/@Model.Id" class="btn btn-primary">Buy / Add to Cart</a>
         </div>
-        
-        <div class="col-md-5">
-            <img src="~/Uploads/@Html.DisplayFor(model => model.ItemImage)"
-                 class="thumbnail" />
-        </div>
-    </div>
-    </div>
-<div class="row">
-    <div class="col-md-2">
-        <a href="Items" class="btn btn-default btn-block">
-            <span class="glyphicon glyphicon-arrow-left"></span> Back to Items List
-        </a>
-    </div> 
-    <div class="col-md-offset-3 col-md-2">
-        @Html.ActionLink("Buy or Add to Cart", "Buy", "Home", new { id = Model.Id }, new { @class = "btn btn-default btn-block" })
     </div>
 </div>

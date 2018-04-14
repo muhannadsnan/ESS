@@ -1,0 +1,50 @@
+a {
+  -webkit-transition: all 350ms ease-out;
+  -moz-transition: all 350ms ease-out;
+  -ms-transition: all 350ms ease-out;
+  -o-transition: all 350ms ease-out;
+  transition: all 350ms ease-out; }
+
+.navbar .navbar-nav .nav-item .nav-link {
+  color: #9c27b0; }
+  .navbar .navbar-nav .nav-item .nav-link:hover {
+    color: #c34cd7; }
+
+.navbar-transparent .nav-item .nav-link {
+  color: #f4def8 !important; }
+  .navbar-transparent .nav-item .nav-link:hover {
+    color: #d88be5 !important; }
+
+.alert {
+  padding: 10px;
+  width: 100%; }
+  .alert.alert-primary h1, .alert.alert-primary h2, .alert.alert-primary h3, .alert.alert-primary h4, .alert.alert-primary h5, .alert.alert-primary h6, .alert.alert-primary a {
+    color: #ccc; }
+  .alert.alert-primary a:hover {
+    color: #fff; }
+
+.btn-primary {
+  background: #9c27b0; }
+
+.card .card-footer {
+  padding: 0px; }
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+  padding: 0 !important;
+  margin: 10px !important; }
+
+.index-page .page-header {
+  background-repeat: no-repeat;
+  background-size: 100% 60vh;
+  height: 60vh;
+  background-image: url("../../Images/kit/bg2.jpg"); }
+  .index-page .page-header .title {
+    font-size: 50px; }
+  .index-page .page-header .desc {
+    max-width: unset; }
+
+.section {
+  padding: 0px 0px; }
+
+.main-raised {
+  padding: 10px 0px; }
