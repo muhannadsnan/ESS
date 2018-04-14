@@ -4,18 +4,34 @@ a
     +transition(all 350ms ease-out)
     
 
-.navbar .navbar-nav 
-    .nav-item 
-        .nav-link
-            color: $primary-color
-            &:hover
-                color: lighten($primary-color, 15%)
+.navbar 
+    .navbar-brand 
+        img  
+            height: 65px
+            padding: 0
+            margin: 0
+            top: -15px
+            position: relative
+    .navbar-nav 
+        .nav-item 
+            .nav-link
+                color: $primary-color
+                &:hover
+                    color: lighten($primary-color, 15%)
 .navbar-transparent
     .nav-item 
         .nav-link
             color: lighten($primary-color, 50%) !important
             &:hover
                 color: lighten($primary-color, 30%) !important
+    .navbar-brand 
+        img  
+            height: 80px
+            padding: 0
+            margin: 0
+            top: -20px
+            position: relative
+           
 
 .alert
     padding: 10px

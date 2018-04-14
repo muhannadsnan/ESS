@@ -5,6 +5,13 @@ a {
   -o-transition: all 350ms ease-out;
   transition: all 350ms ease-out; }
 
+.navbar .navbar-brand img {
+  height: 65px;
+  padding: 0;
+  margin: 0;
+  top: -15px;
+  position: relative; }
+
 .navbar .navbar-nav .nav-item .nav-link {
   color: #9c27b0; }
   .navbar .navbar-nav .nav-item .nav-link:hover {
@@ -14,6 +21,13 @@ a {
   color: #f4def8 !important; }
   .navbar-transparent .nav-item .nav-link:hover {
     color: #d88be5 !important; }
+
+.navbar-transparent .navbar-brand img {
+  height: 80px;
+  padding: 0;
+  margin: 0;
+  top: -20px;
+  position: relative; }
 
 .alert {
   padding: 10px;
