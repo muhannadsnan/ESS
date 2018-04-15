@@ -31,6 +31,18 @@
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav ml-auto">
+                    <li class="nav-item dropdown"> <!-- search -->
+                        <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-search"></i>
+                        </a>
+
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            @using (Html.BeginForm("Search", "Items", FormMethod.Post))
+                            {
+                                <input type="search" name="searchName" id="searchName" placeholder="Search for item..." class="form-control">
+                            }
+                        </div>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="~/Items/Index" onclick="scrollToDownload()">
                             <i class="fab fa-product-hunt"></i> Products
@@ -50,7 +62,13 @@
                         <a class="nav-link" href="~/Home/About" onclick="scrollToDownload()">
                             <i class="fas fa-child"></i> About us
                         </a>
+                    </li>                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="~/AddToCart/MyOrder" onclick="scrollToDownload()">
+                            <i class="fas fa-shopping-cart"></i>
+                        </a>
                     </li>
+
                     <li class="dropdown nav-item pt-2">
                         <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
                             <!-- <i class="material-icons">apps</i> More --> More

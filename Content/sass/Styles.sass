@@ -2,6 +2,8 @@
 
 a
     +transition(all 350ms ease-out)
+.form-check .form-check-input:checked+.form-check-sign .check 
+    background: #9c27b0
 .navbar 
     &.fixed-top
         opacity: .9
@@ -15,13 +17,13 @@ a
     .navbar-nav 
         .nav-item 
             .nav-link
-                font-size: 18px
+                font-size: 16px
                 color: $primary-color
                 &:hover
                     color: lighten($primary-color, 20%)
             svg
-                font-size: 28px
-                margin-right: 6px
+                font-size: 26px
+                margin-right: 4px
     &.navbar-transparent
         .nav-item 
             .nav-link
@@ -67,7 +69,7 @@ h1, h2, h3, h4, h5, h6,.h1, .h2, .h3, .h4, .h5, .h6
 .section
     padding: 0px 0px
 section
-    width: 100%
+    width: 100% !important
 #main-body
     min-height: 600px
     padding: 10px 0px    
@@ -86,3 +88,8 @@ section
     width: 100%
     form
         width: 100%
+
+#login
+    .section
+        height: 75vh
+        background-size: 100% 100%

@@ -4,56 +4,53 @@
     ViewBag.Title = "Log in";
 }
 
-<h2>@ViewBag.Title</h2>
-<div class="row">
-    <div class="col-md-12">
-        <section id="loginForm">
-            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-            {
-                @Html.AntiForgeryToken()
-                <h4>Use a local account to log in</h4>
-                <hr />
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                <div class="form-group">
-                    @Html.LabelFor(m => m.UserName, new { @class = "col-md-2 control-label col-md-offset-2" })
-                    <div class="col-md-4">
-                        @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label col-md-offset-2" })
-                    <div class="col-md-4">
-                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-offset-4 col-md-2">
-                        <div class="checkbox">
-                            @Html.CheckBoxFor(m => m.RememberMe)
-                            @Html.LabelFor(m => m.RememberMe)
+<section id="login" >
+    
+    <div class="section section-signup page-header"  >      
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 ml-auto mr-auto">
+                    <div class="card card-signup">
+                        <div class="card-header card-header-primary text-center">
+                            <h4>@ViewBag.Title</h4>
                         </div>
-                    </div>
-                    <div class="col-md-2">
-                        <input type="submit" value="Log in" class="btn btn-default btn-block" />
+                        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="card-body">
+                                <span class="bmd-form-group"><div class="input-group">
+                                    <span class="input-group-addon pt-2 pr-2"><i class="material-icons">face</i></span>                                    
+                                    @Html.TextBoxFor(m => m.UserName, new { placeholder = "User name", @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+                                </div></span>
+                                <span class="bmd-form-group"><div class="input-group">
+                                    <span class="input-group-addon pt-2 pr-2"><i class="material-icons">email</i></span>
+                                    @Html.PasswordFor(m => m.Password, new { placeholder = "Password", @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                                </div></span>
+
+                                <div class="form-checkX">
+                                    <label class="form-check-label">
+                                        @Html.CheckBoxFor(m => m.RememberMe, new {@class = "form-check-input"})
+                                        @Html.LabelFor(m => m.RememberMe)
+                                        <span class="form-check-sign">
+                                            <span class="check"></span>
+                                        </span>
+                                    </label>                                        
+                                </div>
+                            </div>
+                            <div class="card-footer justify-content-center">
+                                <input type="submit" class="btn btn-info col-9 mx-auto mb-3">
+                            </div>
+                            @* Enable this once you have account confirmation enabled for password reset functionality
+                                <p>
+                                    @Html.ActionLink("Forgot your password?", "ForgotPassword")
+                                </p>*@
+                        }                     
                     </div>
                 </div>
-                <div class="form-group">
-                    <div class="col-md-offset-5 col-md-2">
-                        @Html.ActionLink("Register as a new user", "Register", null, new { @class = "btn btn-default btn-block" })
-                    </div>
-                </div>
-                @* Enable this once you have account confirmation enabled for password reset functionality
-                    <p>
-                        @Html.ActionLink("Forgot your password?", "ForgotPassword")
-                    </p>*@
-            }
-        </section>
+            </div>
+        </div>
     </div>
-    @*<div class="col-md-4">
-        <section id="socialLoginForm">
-            @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
-        </section>
-    </div>*@
-</div>
+</section>
