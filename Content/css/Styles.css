@@ -68,10 +68,9 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 .section {
   padding: 0px 0px; }
 
-.main {
-  min-height: 300px; }
-  .main .main-raised {
-    padding: 10px 0px; }
+#main-body {
+  min-height: 300px;
+  padding: 10px 0px; }
 
 #carousel .carousel-inner .carousel-item img {
   height: 475px !important;

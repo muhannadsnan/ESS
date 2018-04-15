@@ -31,54 +31,73 @@
             </span>
         </div>
     }
+
+    <div class="jumbotron jumbotron-fluid py-5">
+        <div class="container">
+            <h1 class="display-4">Please feel free to have contact with us whenever you have a question</h1>
+            <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+            <ul class="text-left col-md-8 mx-auto pt-5">
+                <li><strong>Yusuf Arbasha (leader): </strong> Phone: +963 333 444 555</li>
+                <li><strong>Muhannad Senan (CEO): </strong> Phone: +963 333 444 555</li>
+                <li><strong>Address: </strong> Saudi Arabia, Jiddah</li>
+            </ul>
+        </div>
+    </div>
     
-        @using (Html.BeginForm())
-        {
-            @Html.AntiForgeryToken()
+    <div class="container pb-5">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d3736489.7218514383!2d90.21589792292741!3d23.857125486636733!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sbd!4v1506502314230" width="100%" height="315" frameborder="0" style="border:0" allowfullscreen></iframe>
+    </div>
+    <hr>
 
-            <div class="col-8 mx-auto pb-5 d-flex flex-column">
-                <div class="col-sm-12 col-md-10 mx-auto  my-3 py-1">
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                    <div class="row">
-                        <div class="col-sm-12">
-                            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { placeholder = "Name..", @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-                        </div>
+    <h3 class="title">Send us a message:</h3>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="col-8 mx-auto pb-5 d-flex flex-column">
+            <div class="col-sm-12 col-md-10 mx-auto  my-3 py-1">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="row">
+                    <div class="col-sm-12">
+                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { placeholder = "Name..", @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
                     </div>
                 </div>
-
-                <div class="col-sm-12 col-md-10 mx-auto  my-3 py-1">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { placeholder = "Email..", @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-12 col-md-10 mx-auto  my-3 py-1">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            @Html.EditorFor(model => model.Subject, new { htmlAttributes = new { placeholder = "Subject..", @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-12 col-md-10 mx-auto  my-3 py-1">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            @Html.TextAreaFor(model => model.Message, 4, 20, new { placeholder = "Message..", @class = "form-control", style="resize:none" })
-                            @Html.ValidationMessageFor(model => model.Message, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row d-flex justify-content-between">
-                    <input type="submit" value="Send" class="btn btn-primary col-9 mx-auto" />
-                </div>
-
             </div>
-        }
-    
+
+            <div class="col-sm-12 col-md-10 mx-auto  my-3 py-1">
+                <div class="row">
+                    <div class="col-sm-12">
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { placeholder = "Email..", @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-md-10 mx-auto  my-3 py-1">
+                <div class="row">
+                    <div class="col-sm-12">
+                        @Html.EditorFor(model => model.Subject, new { htmlAttributes = new { placeholder = "Subject..", @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-md-10 mx-auto  my-3 py-1">
+                <div class="row">
+                    <div class="col-sm-12">
+                        @Html.TextAreaFor(model => model.Message, 4, 20, new { placeholder = "Message..", @class = "form-control", style="resize:none" })
+                        @Html.ValidationMessageFor(model => model.Message, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="row d-flex justify-content-between">
+                <input type="submit" value="Send" class="btn btn-primary col-9 mx-auto" />
+            </div>
+
+        </div>
+    }   
+
 </section>
