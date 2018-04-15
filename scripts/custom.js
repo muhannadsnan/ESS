@@ -1,3 +1,19 @@
+myResize();
+
+$(window).resize(function() {
+    myResize();
+});
+
+function myResize() {
+    if ($(window).width() < 991) {
+        console.log("< 992");
+        $("nav .collapse").addClass("link-colors");
+    } else {
+        console.log("bigger");
+        $("nav .collapse").removeClass("link-colors");
+    }
+}
+
 $(window).scroll(function() {
     var scroll = $(window).scrollTop();
     var doIt = 0;

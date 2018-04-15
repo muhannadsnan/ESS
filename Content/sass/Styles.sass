@@ -15,20 +15,19 @@ a
     .navbar-nav 
         .nav-item 
             .nav-link
+                font-size: 18px
                 color: $primary-color
                 &:hover
                     color: lighten($primary-color, 20%)
-    .collapse.navbar-collapse
-        .nav-link
-            color: $primary-color !important
-            &:hover
-                color: lighten($primary-color, 20%) !important
+            svg
+                font-size: 28px
+                margin-right: 6px
     &.navbar-transparent
         .nav-item 
             .nav-link
-                color: lighten($primary-color, 50%) !important
+                color: #fff
                 &:hover
-                    color: lighten($primary-color, 30%) !important
+                    color: lighten($primary-color, 30%)
         .navbar-brand 
             img  
                 height: 80px
@@ -36,6 +35,10 @@ a
                 margin: 0
                 top: -20px
                 position: relative
+        .collapse.link-colors .nav-item .nav-link
+            color: $primary-color !important
+            &:hover
+                color: lighten($primary-color, 15%) !important
 .alert
     padding: 10px
     width: 100%
@@ -63,8 +66,10 @@ h1, h2, h3, h4, h5, h6,.h1, .h2, .h3, .h4, .h5, .h6
         max-width: unset
 .section
     padding: 0px 0px
+section
+    width: 100%
 #main-body
-    min-height: 300px
+    min-height: 600px
     padding: 10px 0px    
 #carousel
     .carousel-inner

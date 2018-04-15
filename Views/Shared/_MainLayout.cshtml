@@ -33,31 +33,31 @@
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="~/Items/Index" onclick="scrollToDownload()">
-                            <i class="material-icons">cloud_download</i> Products
+                            <i class="fab fa-product-hunt"></i> Products
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="~/Branches/Index" onclick="scrollToDownload()">
-                            <i class="material-icons">cloud_download</i> Branches
+                            <i class="fab fa-periscope"></i> Branches
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="~/Home/Contact" onclick="scrollToDownload()">
-                            <i class="material-icons">cloud_download</i> Contact us
+                            <i class="far fa-envelope"></i> Contact us
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="~/Home/About" onclick="scrollToDownload()">
-                            <i class="material-icons">cloud_download</i> About us
+                            <i class="fas fa-child"></i> About us
                         </a>
                     </li>
-                    <li class="dropdown nav-item">
+                    <li class="dropdown nav-item pt-2">
                         <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-                            <i class="material-icons">apps</i> More
+                            <!-- <i class="material-icons">apps</i> More --> More
                         </a>
                         <div class="dropdown-menu dropdown-with-icons">
                             <a href="~/Account/Login" class="dropdown-item">
-                                <i class="material-icons">layers</i> Log in
+                                <i class="fas fa-sign-in-alt"></i> Log in
                             </a>
                             <a href="~/Account/Register" class="dropdown-item">
                                 <i class="material-icons">content_paste</i> Sign up
@@ -198,6 +198,7 @@
             //materialKit.initSliders();
         });
     </script>
+    @RenderSection("scripts", required: false)
 </body>
 
 </html>
