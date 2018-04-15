@@ -14,3 +14,13 @@ $(window).scroll(function() {
         $(".logo-white").hide();
     }
 });
+
+// floating label
+$(".form-group.bmd-form-group input").click(function(e) {
+    $(this).addClass("is-focused");
+});
+$(window).click(function(e) {
+    if (e.target.className != "form-control is-focused") {
+        $(".is-focused").removeClass("is-focused");
+    }
+});

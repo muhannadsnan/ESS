@@ -4,78 +4,81 @@
     ViewBag.Title = "Contact";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
+<section id="contact">
+    
+    <div class="alert alert-primary">
+        <h2 class="titleX">
+            <a href="~/Home/Index" class="pull-left"><i class="fas fa-arrow-alt-circle-left fa-lg"></i></a>
+            Contact Us</h2>
+    </div>
 
-<h2>Contact Us</h2>
-@if ((string)ViewBag.Result == "Sent")
-{
-    <div class="alert alert-success">
-        <span class="glyphicon glyphicon-ok"></span>
-        <span>
-            Your message has been sent successfully.
-        </span>
-    </div>
-}
-else if ((string)ViewBag.Result == "Error")
-{
-    <div class="alert alert-danger">
-        <span class="glyphicon glyphicon-remove"></span>
-        <span>
-            Your message has not been sent!
-            Please try again later.
-        </span>
-    </div>
-}
-else
-{
-    using (Html.BeginForm())
+    @if ((string)ViewBag.Result == "Sent")
     {
-        @Html.AntiForgeryToken()
-
-        <div class="form-horizontal">
-            <hr />
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <div class="form-group">
-                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2 col-md-offset-2" })
-                <div class="col-md-4">
-                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2 col-md-offset-2" })
-                <div class="col-md-4">
-                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.Subject, htmlAttributes: new { @class = "control-label col-md-2 col-md-offset-2" })
-                <div class="col-md-4">
-                    @Html.EditorFor(model => model.Subject, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.Message, htmlAttributes: new { @class = "control-label col-md-2 col-md-offset-2" })
-                <div class="col-md-4">
-                    @Html.TextAreaFor(model => model.Message, 4, 20, new { @class = "form-control", style="resize:none" })
-                    @Html.ValidationMessageFor(model => model.Message, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-2">
-                    <a href="Home" class="btn btn-default btn-block">
-                        <span class="glyphicon glyphicon-arrow-left"></span> Back to Home Page
-                    </a>
-                </div>
-                <div class="col-md-offset-3 col-md-2">
-                    <input type="submit" value="Send" class="btn btn-default btn-block" />
-                </div>
-            </div>
+        <div class="alert alert-success">
+            <span class="glyphicon glyphicon-ok"></span>
+            <span>
+                Your message has been sent successfully.
+            </span>
         </div>
     }
-}
+    else if ((string)ViewBag.Result == "Error")
+    {
+        <div class="alert alert-danger">
+            <span class="glyphicon glyphicon-remove"></span>
+            <span>
+                Your message has not been sent!
+                Please try again later.
+            </span>
+        </div>
+    }
+    
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="col-8 mx-auto pb-5 d-flex flex-column">
+                <div class="col-sm-12 col-md-10 mx-auto  my-3 py-1">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="row">
+                        <div class="col-sm-12">
+                            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { placeholder = "Name..", @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-12 col-md-10 mx-auto  my-3 py-1">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { placeholder = "Email..", @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-12 col-md-10 mx-auto  my-3 py-1">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            @Html.EditorFor(model => model.Subject, new { htmlAttributes = new { placeholder = "Subject..", @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-12 col-md-10 mx-auto  my-3 py-1">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            @Html.TextAreaFor(model => model.Message, 4, 20, new { placeholder = "Message..", @class = "form-control", style="resize:none" })
+                            @Html.ValidationMessageFor(model => model.Message, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row d-flex justify-content-between">
+                    <input type="submit" value="Send" class="btn btn-primary col-9 mx-auto" />
+                </div>
+
+            </div>
+        }
+    
+</section>

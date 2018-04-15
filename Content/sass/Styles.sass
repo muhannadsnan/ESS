@@ -3,6 +3,8 @@
 a
     +transition(all 350ms ease-out)
 .navbar 
+    &.fixed-top
+        opacity: .9
     .navbar-brand 
         img  
             height: 65px
@@ -15,25 +17,25 @@ a
             .nav-link
                 color: $primary-color
                 &:hover
-                    color: lighten($primary-color, 15%)
-.navbar-transparent
-    .nav-item 
-        .nav-link
-            color: lighten($primary-color, 50%) !important
-            &:hover
-                color: lighten($primary-color, 30%) !important
-    .navbar-brand 
-        img  
-            height: 80px
-            padding: 0
-            margin: 0
-            top: -20px
-            position: relative
+                    color: lighten($primary-color, 20%)
     .collapse.navbar-collapse
         .nav-link
-            color: $primary-color
+            color: $primary-color !important
             &:hover
-                color: lighten($primary-color, 15%) 
+                color: lighten($primary-color, 20%) !important
+    &.navbar-transparent
+        .nav-item 
+            .nav-link
+                color: lighten($primary-color, 50%) !important
+                &:hover
+                    color: lighten($primary-color, 30%) !important
+        .navbar-brand 
+            img  
+                height: 80px
+                padding: 0
+                margin: 0
+                top: -20px
+                position: relative
 .alert
     padding: 10px
     width: 100%
@@ -61,8 +63,10 @@ h1, h2, h3, h4, h5, h6,.h1, .h2, .h3, .h4, .h5, .h6
         max-width: unset
 .section
     padding: 0px 0px
-.main-raised
-    padding: 10px 0px
+.main
+    min-height: 300px
+    .main-raised
+        padding: 10px 0px
 #carousel
     .carousel-inner
         .carousel-item
@@ -74,4 +78,7 @@ h1, h2, h3, h4, h5, h6,.h1, .h2, .h3, .h4, .h5, .h6
 .marginTop30-
     margin-top: -30px !important
 
-
+#contact
+    width: 100%
+    form
+        width: 100%
