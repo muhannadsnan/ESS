@@ -66,10 +66,11 @@
                     <li class="nav-item">
                         <a class="nav-link" href="~/Cart/MyCart" onclick="scrollToDownload()">
                             <i class="fas fa-shopping-cart"></i>
+							<span class="badge">@Session["count"]</span>
                         </a>
                     </li>
-
-                    <li class="dropdown nav-item pt-2">
+					<!--dear muhannad you should put the next li in the _Login.cshtml file in the else part-->
+                    @*<li class="dropdown nav-item pt-2">
                         <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
                             <!-- <i class="material-icons">apps</i> More --> More
                         </a>
@@ -81,7 +82,11 @@
                                 <i class="material-icons">content_paste</i> Sign up
                             </a>
                         </div>
-                    </li>
+                    </li>*@
+					<li>
+						<!--Partial Page-->
+							@{Html.RenderPartial("_Login");}
+					</li>
                 </ul>
             </div>
         </div>

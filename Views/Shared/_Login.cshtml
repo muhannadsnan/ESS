@@ -13,12 +13,12 @@
 
         @Html.AntiForgeryToken()
         <ul class="nav navbar-nav navbar-right">
-            <li>
+            @*<li>
                 <a href="@Url.Action("MyCart", "Cart")" style="background-color:darkred">
                     <span class="glyphicon glyphicon-shopping-cart" style="color:bisque;font-size:x-large;"></span>
                     <span class="badge">@Session["count"]</span>
                 </a>
-            </li>
+            </li>*@
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                     <span class="glyphicon glyphicon-user"></span>
@@ -70,12 +70,12 @@
 else
 {
     <ul class="nav navbar-nav navbar-right">
-        <li>
-            <a href="@Url.Action("MyOrder", "AddToCart")" style="background-color:darkred">
+        @*<li>
+            <a href="@Url.Action("MyCart", "Cart")" style="background-color:darkred">
                 <span class="glyphicon glyphicon-shopping-cart" style="color:bisque;font-size:x-large;"></span>
                 <span class="badge">@Session["count"]</span>
             </a>
-        </li>
+        </li>*@
         <li>
             <a href="~/Account/Login">
                 <i class="glyphicon glyphicon-log-in"></i>
