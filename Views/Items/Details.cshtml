@@ -7,7 +7,7 @@
 <div class="alert alert-primary">
     <h3 class="titleX">
         <a href="~/Home/Index" class="pull-left"><i class="fas fa-arrow-alt-circle-left fa-lg"></i></a>
-        ITEM TITLE, BRAND
+        @Html.DisplayFor(model => model.ItemType.CategoryName)
         <span class="text-center pl-3"><i class="fas fa-indent fa-lg"></i></span>        
     </h3>
 </div>
@@ -17,11 +17,11 @@
         <img class="card-img-top" src="~/Uploads/@Html.DisplayFor(model => model.ItemImage)" alt="Card image cap">
         <div class="card-body">
             <span class="card-title d-flex justify-content-between">
-                <span class="titleX h3 text-primary col-8x">TITLE</span>            
+                <span class="titleX h3 text-primary col-8x">@Html.DisplayFor(model => model.BrandName)</span>            
                 <span class="titleX h3 text-primary col-3x">@Html.DisplayFor(model => model.Price) SAR</span>            
             </span>
             
-            <p class="card-text text-left">DESCRIPTION: Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            @*<p class="card-text text-left">DESCRIPTION: Some quick example text to build on the card title and make up the bulk of the card's content.</p>*@
             <dl class="dl-horizontal row d-lg-none text-left">
                 <div class="col-md-6">
                     <dt>
