@@ -81,7 +81,9 @@ section {
 
 #main-body {
   min-height: 600px;
-  padding: 10px 0px; }
+  padding: 0px 0px;
+  overflow: hidden;
+  border-radius: 7px; }
 
 #carousel .carousel-inner .carousel-item img {
   height: 475px !important;
