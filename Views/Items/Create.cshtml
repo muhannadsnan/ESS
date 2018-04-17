@@ -5,7 +5,10 @@
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
 
-<h2>Create Item</h2>
+
+<div class="alert alert-primary">
+    <h2>Create Item</h2>
+</div>
 
 @using (Html.BeginForm("Create","Items",FormMethod.Post,new { enctype="multipart/form-data"}))
 {

@@ -7,8 +7,11 @@
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
 
-<h2>Quantities</h2>
-<hr />
+
+<div class="alert alert-primary">
+    <h2>Quantities</h2>
+</div>
+
 @using (Html.BeginForm("Search", "Quantities", FormMethod.Post))
 {
     <div class="row">

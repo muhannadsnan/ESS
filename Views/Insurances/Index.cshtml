@@ -3,8 +3,11 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
-<h2>Insurances</h2>
-<hr />
+
+<div class="alert alert-primary">
+    <h2>Insurances</h2>
+</div>
+
 @if (User.IsInRole("Admins")) {
     <div class="row">
         <div class="col-md-offset-5 col-md-2">

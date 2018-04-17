@@ -5,7 +5,11 @@
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
 
-<h2>Edit Profile</h2>
+
+<div class="alert alert-primary">
+    <h2>Edit Profile</h2>
+</div>
+
 @if (ViewBag.Result == null || ViewBag.Result == "The Password is incoreect.")
 {
     using (Html.BeginForm())

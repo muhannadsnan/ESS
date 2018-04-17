@@ -5,8 +5,11 @@
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
 <div id="app">
-    <h2>Invoices</h2>
-    <hr />
+    
+    <div class="alert alert-primary">
+        <h2>Invoices</h2>
+    </div>
+
     @using (Html.BeginForm("Search", "Invoices", FormMethod.Post))
     {
         <div class="row">

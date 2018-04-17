@@ -5,8 +5,10 @@
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
 
-<h2>Branches</h2>
-<hr />
+<div class="alert alert-primary">
+    <h2>Branches</h2>
+</div>
+
 @using (Html.BeginForm("Search", "Branches", FormMethod.Post))
 {
     <div class="row">

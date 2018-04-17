@@ -4,8 +4,11 @@
     ViewBag.Title = "GetQuantityByItem";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
-<h2>Quantity</h2>
-<hr />
+
+<div class="alert alert-primary">
+    <h2>Quantity</h2>
+</div>
+
 @if (Model != null && Model.Count() > 0)
 {
     ApplicationDbContext db = new ApplicationDbContext();
