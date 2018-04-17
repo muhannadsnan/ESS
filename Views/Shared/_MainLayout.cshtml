@@ -69,23 +69,9 @@
 							<span class="badge">@Session["count"]</span>
                         </a>
                     </li>
-					<!--dear muhannad you should put the next li in the _Login.cshtml file in the else part-->
-                    @*<li class="dropdown nav-item pt-2">
-                        <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-                            <!-- <i class="material-icons">apps</i> More --> More
-                        </a>
-                        <div class="dropdown-menu dropdown-with-icons">
-                            <a href="~/Account/Login" class="dropdown-item">
-                                <i class="fas fa-sign-in-alt"></i> Log in
-                            </a>
-                            <a href="~/Account/Register" class="dropdown-item">
-                                <i class="material-icons">content_paste</i> Sign up
-                            </a>
-                        </div>
-                    </li>*@
 					<li>
 						<!--Partial Page-->
-							@{Html.RenderPartial("_Login");}
+                        @{Html.RenderPartial("_Login");}
 					</li>
                 </ul>
             </div>
