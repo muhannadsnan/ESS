@@ -6,7 +6,9 @@
     double sum = 0;
 }
 
-<h2>My Cart</h2>
+<div class="alert alert-primary">
+    <h2>My Cart</h2>    
+</div>
 <hr />
 @if (Model != null && Model.Count() > 0)
 {
@@ -81,7 +83,7 @@
 }
 else if(ViewBag.Deleted=="yes" || ViewBag.Empty=="yes")
 {
-    <div class="alert alert-danger">
+    <div class="alert">
         <h4 style="font-weight:bolder">
             <span class="glyphicon glyphicon-remove">
             </span> Your Cart is Empty!
