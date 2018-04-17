@@ -70,23 +70,18 @@
 else
 {
     <ul class="nav navbar-nav navbar-right">
-        @*<li>
-            <a href="@Url.Action("MyCart", "Cart")" style="background-color:darkred">
-                <span class="glyphicon glyphicon-shopping-cart" style="color:bisque;font-size:x-large;"></span>
-                <span class="badge">@Session["count"]</span>
+        <li class="dropdown nav-item pt-2">
+            <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                <!-- <i class="material-icons">apps</i> More --> More
             </a>
-        </li>*@
-        <li>
-            <a href="~/Account/Login">
-                <i class="glyphicon glyphicon-log-in"></i>
-                Login
-            </a>
-        </li>
-        <li>
-            <a href="~/Account/Register">
-                <i class="glyphicon glyphicon-user"></i>
-                Sign up
-            </a>
+            <div class="dropdown-menu dropdown-with-icons">
+                <a href="~/Account/Login" class="dropdown-item">
+                    <i class="fas fa-sign-in-alt"></i> Log in
+                </a>
+                <a href="~/Account/Register" class="dropdown-item">
+                    <i class="material-icons">content_paste</i> Sign up
+                </a>
+            </div>
         </li>
     </ul>
 }
