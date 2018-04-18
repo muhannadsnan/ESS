@@ -14,9 +14,57 @@ a
             margin: 0
             top: -15px
             position: relative
+    &.navbar-transparent
+            .nav-item 
+                span.badge
+                    border-color: #ccc
+                    color: #ccc
+                .nav-link, #navDropDownUser
+                    color: #fff !important                    
+                    &:hover
+                        color: lighten($primary-color, 30%) !important
+                    &:after
+                        padding: 0
+                        margin: 0
+            .navbar-brand 
+                img  
+                    height: 80px
+                    padding: 0
+                    margin: 0
+                    top: -20px
+                    position: relative
+            .collapse
+                &.link-colors 
+                    input[name="searchName"]
+                        position: relative
+                        top: -50px
+                        left: 0px
+                        background: #fff
+                    .nav-item 
+                        span.badge
+                            border-color: $primary-color
+                            color: $primary-color
+                            position: relative
+                            right: -60px
+                            top: -57px 
+                        .nav-link, #navDropDownUser
+                            color: $primary-color !important
+                            &:hover
+                                color: lighten($primary-color, 15%) !important
+                    
     .navbar-nav 
         .nav-item 
-            .nav-link
+            max-height: 58px
+            .badge
+                position: relative
+                right: -46px
+                top: -50px
+                color: $primary-color
+                background: none
+                border: 1px solid $primary-color
+                padding: 4px
+                line-height: 6px
+            .nav-link, #navDropDownUser
                 font-size: 16px
                 color: $primary-color
                 &:hover
@@ -24,23 +72,15 @@ a
             svg
                 font-size: 26px
                 margin-right: 4px
-    &.navbar-transparent
-        .nav-item 
-            .nav-link
-                color: #fff
-                &:hover
-                    color: lighten($primary-color, 30%)
-        .navbar-brand 
-            img  
-                height: 80px
-                padding: 0
-                margin: 0
-                top: -20px
-                position: relative
-        .collapse.link-colors .nav-item .nav-link
-            color: $primary-color !important
-            &:hover
-                color: lighten($primary-color, 15%) !important
+        
+    .dropdown-menu.show
+        padding: 5px 0px
+        margin: 0
+        left: -90px
+        input[name="searchName"]
+            width: 250px
+            padding: 10px
+            border-top: 1px solid #ccc  
 .alert
     padding: 10px
     width: 100%
@@ -54,7 +94,7 @@ a
 .card
     .card-footer
         padding: 0px
-h1, h2, h3, h4, h5, h6,.h1, .h2, .h3, .h4, .h5, .h6
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6
     padding: 0 !important
     margin: 10px !important
 .index-page .page-header

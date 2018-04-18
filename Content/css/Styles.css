@@ -18,20 +18,17 @@ a {
   top: -15px;
   position: relative; }
 
-.navbar .navbar-nav .nav-item .nav-link {
-  font-size: 16px;
-  color: #9c27b0; }
-  .navbar .navbar-nav .nav-item .nav-link:hover {
-    color: #ca61dc; }
+.navbar.navbar-transparent .nav-item span.badge {
+  border-color: #ccc;
+  color: #ccc; }
 
-.navbar .navbar-nav .nav-item svg {
-  font-size: 26px;
-  margin-right: 4px; }
-
-.navbar.navbar-transparent .nav-item .nav-link {
-  color: #fff; }
-  .navbar.navbar-transparent .nav-item .nav-link:hover {
-    color: #d88be5; }
+.navbar.navbar-transparent .nav-item .nav-link, .navbar.navbar-transparent .nav-item #navDropDownUser {
+  color: #fff !important; }
+  .navbar.navbar-transparent .nav-item .nav-link:hover, .navbar.navbar-transparent .nav-item #navDropDownUser:hover {
+    color: #d88be5 !important; }
+  .navbar.navbar-transparent .nav-item .nav-link:after, .navbar.navbar-transparent .nav-item #navDropDownUser:after {
+    padding: 0;
+    margin: 0; }
 
 .navbar.navbar-transparent .navbar-brand img {
   height: 80px;
@@ -40,10 +37,52 @@ a {
   top: -20px;
   position: relative; }
 
-.navbar.navbar-transparent .collapse.link-colors .nav-item .nav-link {
+.navbar.navbar-transparent .collapse.link-colors input[name="searchName"] {
+  position: relative;
+  top: -50px;
+  left: 0px;
+  background: #fff; }
+
+.navbar.navbar-transparent .collapse.link-colors .nav-item span.badge {
+  border-color: #9c27b0;
+  color: #9c27b0;
+  position: relative;
+  right: -60px;
+  top: -57px; }
+
+.navbar.navbar-transparent .collapse.link-colors .nav-item .nav-link, .navbar.navbar-transparent .collapse.link-colors .nav-item #navDropDownUser {
   color: #9c27b0 !important; }
-  .navbar.navbar-transparent .collapse.link-colors .nav-item .nav-link:hover {
+  .navbar.navbar-transparent .collapse.link-colors .nav-item .nav-link:hover, .navbar.navbar-transparent .collapse.link-colors .nav-item #navDropDownUser:hover {
     color: #c34cd7 !important; }
+
+.navbar .navbar-nav .nav-item {
+  max-height: 58px; }
+  .navbar .navbar-nav .nav-item .badge {
+    position: relative;
+    right: -46px;
+    top: -50px;
+    color: #9c27b0;
+    background: none;
+    border: 1px solid #9c27b0;
+    padding: 4px;
+    line-height: 6px; }
+  .navbar .navbar-nav .nav-item .nav-link, .navbar .navbar-nav .nav-item #navDropDownUser {
+    font-size: 16px;
+    color: #9c27b0; }
+    .navbar .navbar-nav .nav-item .nav-link:hover, .navbar .navbar-nav .nav-item #navDropDownUser:hover {
+      color: #ca61dc; }
+  .navbar .navbar-nav .nav-item svg {
+    font-size: 26px;
+    margin-right: 4px; }
+
+.navbar .dropdown-menu.show {
+  padding: 5px 0px;
+  margin: 0;
+  left: -90px; }
+  .navbar .dropdown-menu.show input[name="searchName"] {
+    width: 250px;
+    padding: 10px;
+    border-top: 1px solid #ccc; }
 
 .alert {
   padding: 10px;

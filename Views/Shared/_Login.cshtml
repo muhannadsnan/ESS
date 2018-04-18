@@ -12,18 +12,14 @@
         var CurrentUser = db.Users.Find(UserId);
 
         @Html.AntiForgeryToken()
-        <ul class="nav navbar-nav navbar-right">
-            @*<li>
-                <a href="@Url.Action("MyCart", "Cart")" style="background-color:darkred">
-                    <span class="glyphicon glyphicon-shopping-cart" style="color:bisque;font-size:x-large;"></span>
-                    <span class="badge">@Session["count"]</span>
-                </a>
-            </li>*@
+        @*<ul class="nav navbar-nav navbar-right">
+            
             <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    <span class="glyphicon glyphicon-user"></span>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="navDropDownUser">
+                    @*<span class="glyphicon glyphicon-user"></span>
                     <strong>Welcome: @CurrentUser.UserName</strong>
-                    <span class="glyphicon glyphicon-chevron-down"></span>
+                    <span class="glyphicon glyphicon-chevron-down"></span>*@
+                    @* <i class="fas fa-user-circle"></i>
                 </a>
                 <ul class="dropdown-menu">
                     <li>
@@ -32,17 +28,17 @@
                                 <div class="col-md-12">
                                     @if (UserRoleName == "Clients")
                                     {
-                                        <a href="~/Orders/GetOrdersByUser" class="btn btn-default btn-block">Your Orders</a>
+                                        <a href="~/Orders/GetOrdersByUser" class="btn btn-defaultX btn-block">Your Orders</a>
                                     }
                                     else if (UserRoleName == "Employees")
                                     {
-                                        <a href="~/Account/EmployeeTasksView" class="btn btn-default btn-block">Go To Tasks</a>
+                                        <a href="~/Account/EmployeeTasksView" class="btn btn-defaultX btn-block">Go To Tasks</a>
                                     }
                                     else if (UserRoleName == "Admins")
                                     {
-                                        <a href="~/Account/ManagerTasksView" class="btn btn-default btn-block">Go To Tasks</a>
+                                        <a href="~/Account/ManagerTasksView" class="btn btn-defaultX btn-block">Go To Tasks</a>
                                     }
-                                    <a href="~/Account/EditProfile" class="btn btn-default btn-block">Edit Account</a>
+                                    <a href="~/Account/EditProfile" class="btn btn-defaultX btn-block">Edit Account</a>
                                 </div>
                             </div>
                         </div>
@@ -54,8 +50,7 @@
                                 <div class="col-md-12">
                                     <p>
                                         <a href="javascript:document.getElementById('logoff').submit()" class="btn btn-default btn-block">
-                                            <i class="glyphicon glyphicon-log-out"></i>
-                                            Sign out
+                                            <i class="glyphicon glyphicon-log-out"></i> Sign out
                                         </a>
                                     </p>
                                 </div>
@@ -63,6 +58,47 @@
                         </div>
                     </li>
                 </ul>
+            </li>
+        </ul>*@
+
+
+        <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown nav-item">
+                @*<li>
+                    <a href="@Url.Action("MyCart", "Cart")" style="background-color:darkred">
+                        <span class="glyphicon glyphicon-shopping-cart" style="color:bisque;font-size:x-large;"></span>
+                        <span class="badge">@Session["count"]</span>
+                    </a>
+                </li>*@
+                <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                    <i class="fas fa-user-circle"></i> @*font size for this is in sass*@
+                </a>
+                <div class="dropdown-menu dropdown-with-icons">
+                    @if (UserRoleName == "Clients")
+                    {
+                        <a href="~/Orders/GetOrdersByUser" class="dropdown-item">
+                            <i class="fas fa-sign-in-alt"></i> Your Orders
+                        </a>
+                    }
+                    else if (UserRoleName == "Employees")
+                    {
+                        <a href="~/Account/EmployeeTasksView" class="dropdown-item">
+                            <i class="material-icons">content_paste</i> Tasks
+                        </a>
+                    }
+                    else if (UserRoleName == "Admins")
+                    {
+                        <a href="~/Account/ManagerTasksView" class="dropdown-item">
+                            <i class="material-icons">content_paste</i> Tasks
+                        </a>
+                    }
+                    <a href="~/Account/EditProfile" class="dropdown-item">
+                        <i class="material-icons">content_paste</i> Account
+                    </a>
+                    <a href="javascript:document.getElementById('logoff').submit()" class="dropdown-item">
+                        <i class="material-icons">content_paste</i> Sign out
+                    </a>
+                </div>
             </li>
         </ul>
     }
@@ -72,7 +108,7 @@ else
     <ul class="nav navbar-nav navbar-right">
         <li class="dropdown nav-item pt-2">
             <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-                <!-- <i class="material-icons">apps</i> More --> More
+                <i class="fas fa-user-circle"></i>
             </a>
             <div class="dropdown-menu dropdown-with-icons">
                 <a href="~/Account/Login" class="dropdown-item">
