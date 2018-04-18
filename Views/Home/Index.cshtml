@@ -76,9 +76,9 @@
                         <img class="card-img-top" src="~/Uploads/@subItem.ItemImage" alt="@Html.DisplayFor(modelItem => item.CategoryName)">
                         <div class="card-body">
                             <h5 class="card-title text-primary">@Html.DisplayFor(modelItem => subItem.BrandName)</h5>                        
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the cards content.</p>
+                            <p class="card-text">@Html.DisplayFor(modelItem => subItem.Color) @Html.DisplayFor(modelItem => subItem.ItemType.CategoryName) for @Html.DisplayFor(modelItem => subItem.Gender).</p>
                             <a href="~/Items/Details/@subItem.Id" class="btn btn-primary">Details</a>
-                            <div class="card-footer"><small class="text-muted">3 days ago</small></div>
+                            @*<div class="card-footer"><small class="text-muted">3 days ago</small></div>*@
                         </div>
                     </div>
                 </div>                
