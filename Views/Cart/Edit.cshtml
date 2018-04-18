@@ -14,56 +14,55 @@
     @Html.AntiForgeryToken()
     
 <div class="col-md-8 col-lg-6 mx-auto pb-5 d-flex flex-column"> 
-    <div class="col-sm-12 col-md-10 mx-auto  my-3 py-1">
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.Id)
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.Id)
 
-        <div class="form-group">
+    <div class="col-sm-12 col-md-10 mx-auto  my-3 py-1">
+        <div class="row">
             <div class="col-md-4 col-md-offset-4">
                 <img src="~/Uploads/@Html.Display("ItemImage")"
-                     class="thumbnail"
-                     style="margin:auto" />
+                    class="thumbnail"
+                    style="margin:auto" />
             </div>
         </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.BranchId, "Branch", htmlAttributes: new { @class = "control-label col-md-2 col-md-offset-2" })
-            <div class="col-md-4">
+    </div>
+    <div class="col-sm-12 col-md-10 mx-auto  my-3 py-1">
+        <div class="row">
+            <div class="col-sm-12">
                 @Html.DropDownList("BranchId", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.BranchId, "", new { @class = "text-danger" })
             </div>
         </div>
-        <div class="form-group">
+    </div>
+    <div class="col-sm-12 col-md-10 mx-auto  my-3 py-1">
+        <div class="row">
             @Html.Label("Quantity", htmlAttributes: new { @class = "control-label col-md-2 col-md-offset-2" })
-            <div class="col-md-4">
+            <div class="col-sm-12">
                 <input type="number" name="Quantity" id="myQuantity" value=@Model.Quantity min="1" class="form-control" />
                 @Html.ValidationMessage("Quantity", "", new { @class = "text-danger" })
             </div>
         </div>
-
-        <div class="form-group">
+    </div>
+    <div class="col-sm-12 col-md-10 mx-auto  my-3 py-1">
+        <div class="row">
             @Html.Label("Price", htmlAttributes: new { @class = "control-label col-md-2 col-md-offset-2" })
-            <div class="col-md-4">
+            <div class="col-sm-12">
                 <p id="myP" style="font-weight:bolder;font-size:larger;text-align:left">@ViewBag.OrderPrice</p>
             </div>
         </div>
+    </div>  
+    <div class="row d-flex justify-content-between">
+        <input type="submit" value="Send" class="btn btn-primary col-9 mx-auto" />
+    </div>
+</div>
+}
 
-
-        
-
-        <div class="form-group">
+<div class="row">
             <div class="col-md-2">
                 <a href="Cart" class="btn btn-default btn-block">
                     <span class="glyphicon glyphicon-arrow-left"></span> Back to Cart
                 </a>
-            </div>
-            <div class="col-md-offset-3 col-md-2">
-                <button type="submit" value="Save" class="btn btn-default btn-block">
-                <span class="glyphicon glyphicon-floppy-disk"></span> Save
-                    </button>
-            </div>
-        </div>
-    </div>
-}
+            </div></div>
 
 
 @section scripts{

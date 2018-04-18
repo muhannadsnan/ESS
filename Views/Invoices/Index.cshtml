@@ -14,15 +14,15 @@
     {
         <div class="row">
             <div class="col-md-2">
-                <div class="form-group">
+                <div class="row">
                     <input type="search" name="InvoiceId" placeholder="Invoice Number" class="form-control" />
                 </div>
             </div>
             <div class="col-md-2">
-                <div class="form-group">
+                <div class="row">
                     <input type="search" name="ClientName" placeholder="Client Name" class="form-control">
                 </div>
-                <div class="form-group">
+                <div class="row">
                     <input type="search" name="ClientPhoneNumber" placeholder="Client Phone Number" class="form-control">
                 </div>
             </div>
@@ -35,10 +35,10 @@
                 </div>
             </div>
             <div class="col-md-3">
-                <div class="form-group">
+                <div class="row">
                     @Html.DropDownList("InsuranceId", null, htmlAttributes: new { @class = "form-control" })
                 </div>
-                <div class="form-group">
+                <div class="row">
                     @if (User.IsInRole("Admins"))
                 {
                         @Html.DropDownList("BranchId", null, htmlAttributes: new { @class = "form-control" })
@@ -46,10 +46,10 @@
                 </div>
             </div>
             <div class="col-md-2">
-                <div class="form-group">
+                <div class="row">
                     <input type="submit" value="Search" class="btn btn-default btn-block" />
                 </div>
-                <div class="form-group">
+                <div class="row">
                     <a class="btn btn-default btn-block" href=@Url.Action("Create")>
                         <span class="glyphicon glyphicon-plus-sign"></span> Create New Invoice
                     </a>
