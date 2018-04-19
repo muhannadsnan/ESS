@@ -50,10 +50,10 @@
                 </td>
                 <td>
                     <a title="Edit" href=@Url.Action("Edit", "Cart", new { ItemId = order.ItemId })>
-                        <span class="glyphicon glyphicon glyphicon-edit" style="font-size:large"></span>
+                        <i class="fas fa-edit fa-lg"></i>
                     </a> |
                     <a title="Delete" href=@Url.Action("Delete", "Cart", new { ItemId = order.ItemId }) onclick="return confirm('Are you sure you want to delete this item?')">
-                        <span class="glyphicon glyphicon glyphicon-trash" style="font-size:large"></span>
+                        <i class="fas fa-trash-alt fa-lg"></i>
                     </a>
                 </td>
             </tr>
@@ -94,26 +94,20 @@ else if(ViewBag.Deleted=="yes" || ViewBag.Empty=="yes")
 {
     case "Saved":
         <div class="alert alert-success" id="error-div">
-            <h4 style="font-weight:bolder">
-                <span class="glyphicon glyphicon-ok">
-                </span> Your cart has been saved successfully.
-            </h4>
+          <i class="fas fa-check"></i>
+		  <span> Your cart has been saved successfully.</span>
         </div>
         break;
     case "Edited":
         <div class="alert alert-success" id="error-div">
-            <h4 style="font-weight:bolder">
-                <span class="glyphicon glyphicon-ok">
-                </span> Your item has been edited successfully.
-            </h4>
+                <i class="fas fa-check"></i>
+				<span> Your item has been edited successfully.</span>
         </div>
         break;
     case "Deleted":
         <div class="alert alert-success" id="error-div">
-            <h4 style="font-weight:bolder">
-                <span class="glyphicon glyphicon-ok">
-                </span> Your item has been deleted successfully.
-            </h4>
+                <i class="fas fa-check"></i>
+				<span> Your item has been deleted successfully.</span>
         </div>
         break;
     case "PayButton":

@@ -72,6 +72,7 @@
                 </li>*@
                 <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
                     <i class="fas fa-user-circle"></i> @*font size for this is in sass*@
+                    @CurrentUser.UserName
                 </a>
                 <div class="dropdown-menu dropdown-with-icons">
                     @if (UserRoleName == "Clients")

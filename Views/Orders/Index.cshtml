@@ -47,7 +47,8 @@
         </div>
         <div class="col-md-2">
             <div class="row">
-                <input type="submit" value="Search" class="btn btn-default btn-block" />
+                <button type="submit" value="Search" class="btn btn-default btn-block" >
+				<i class="fas fa-search"></i> Search</button>
             </div>
         </div>
     </div>
@@ -60,7 +61,7 @@
                 @Html.DisplayName("Order No")
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.User.UserName)
+                User Name
             </th>
 
             <th>
@@ -134,10 +135,10 @@
                     {
 
                         <a title="Edit" href=@Url.Action("Edit", new { id = item.Id })>
-                            <span class="glyphicon glyphicon glyphicon-edit" style="font-size:large"></span>
-                        </a><i> | </i>
+                            <i class="fas fa-edit fa-lg"></i>
+                        </a><span>|</span>
                              <a title="Delete" href=@Url.Action("Delete", new { id = item.Id }) onclick="return confirm('Are you sure you want to delete this order?')">
-                            <span class="glyphicon glyphicon glyphicon-trash" style="font-size:large"></span>
+                            <i class="fas fa-trash-alt fa-lg"></i>
                         </a>
 
                     }
@@ -160,20 +161,16 @@ else
     case "Edited":
         {
             <div class="alert alert-success" id="error-div">
-                <span class="glyphicon glyphicon-ok"></span>
-                <span>
-                    The order has been edited successfully.
-                </span>
+                <i class="fas fa-check"></i>
+                <span> The order has been edited successfully.</span>
             </div>
         }
         break;
     case "Deleted":
         {
             <div class="alert alert-success" id="error-div">
-                <span class="glyphicon glyphicon-ok"></span>
-                <span>
-                    The order has been deleted successfully.
-                </span>
+               <i class="fas fa-check"></i>
+                <span> The order has been deleted successfully.</span>
             </div>
         }
         break;

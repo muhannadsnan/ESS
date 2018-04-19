@@ -25,6 +25,7 @@
             <th>
                 @Html.DisplayName("Quantity")
             </th>
+			<th></th>
         </tr>
         @foreach (var item in Model)
         {
@@ -42,10 +43,10 @@
                     {
                     <td>
                         <a title="Edit" href=@Url.Action("Edit", new { ItemId = item.ItemId, BranchId = item.BranchId })>
-                            <span class="glyphicon glyphicon glyphicon-edit" style="font-size:large"></span>
-                        </a> |
+                            <i class="fas fa-edit fa-lg"></i>
+                        </a>|
                         <a title="Delete" href=@Url.Action("Delete", new { ItemId = item.ItemId, BranchId = item.BranchId }) onclick="return confirm('Are you sure you want to delete this quantity?')">
-                            <span class="glyphicon glyphicon glyphicon-trash" style="font-size:large"></span>
+                            <i class="fas fa-trash-alt fa-lg"></i>
                         </a>
                     </td>
                 }

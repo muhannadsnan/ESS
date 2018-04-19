@@ -24,15 +24,16 @@
         </div>
         <div class="col-md-2">
             <div class="row">
-                <button type="submit" value="Search" class="btn btn-default btn-block" ><span class="glyphicon glyphicon-search"></span> Search</button>
+                <button type="submit" value="Search" class="btn btn-default btn-block" >
+				<i class="fas fa-search"></i> Search</button>
             </div>
         </div>
         @if (User.IsInRole("Admins"))
         {
             <div class="col-md-2">
                 <div class="row">
-                    <a class="btn btn-default btn-block" href="Branches/Create">
-                        <span class="glyphicon glyphicon-plus-sign"></span> Create New Branch
+                    <a class="btn btn-default btn-block" href="~/Branches/Create">
+                        <i class="fas fa-plus-circle"></i> Create New Branch
                     </a>
                 </div>
             </div>
@@ -75,10 +76,10 @@
                     {
                         <td>
                             <a title="Edit" href=@Url.Action("Edit", new { id = item.Id })>
-                                <span class="glyphicon glyphicon glyphicon-edit" style="font-size:large"></span>
-                            </a> |
+                                <i class="fas fa-edit fa-lg"></i>
+                            </a>|
                             <a title="Delete" href=@Url.Action("Delete", new { id = item.Id }) onclick="return confirm('Are you sure you want to delete this branch?')">
-                                <span class="glyphicon glyphicon glyphicon-trash" style="font-size:large"></span>
+                                <i class="fas fa-trash-alt fa-lg"></i>
                             </a>
                         </td>
                     }
@@ -102,30 +103,24 @@ else
     case "Created":
         {
             <div class="alert alert-success" id="error-div">
-                <span class="glyphicon glyphicon-ok"></span>
-                <span>
-                    The branch has been created successfully.
-                </span>
+                <i class="fas fa-check"></i>
+                <span> The branch has been created successfully.</span>
             </div>
         }
         break;
     case "Edited":
         {
             <div class="alert alert-success" id="error-div">
-                <span class="glyphicon glyphicon-ok"></span>
-                <span>
-                    The branch has been edited successfully.
-                </span>
+                <i class="fas fa-check"></i>
+                <span> The branch has been edited successfully.</span>
             </div>
         }
         break;
     case "Deleted":
         {
             <div class="alert alert-success" id="error-div">
-                <span class="glyphicon glyphicon-ok"></span>
-                <span>
-                    The branch has been deleted successfully.
-                </span>
+                <i class="fas fa-check"></i> 
+                <span> The branch has been deleted successfully.</span>
             </div>
         }
         break;

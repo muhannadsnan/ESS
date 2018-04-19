@@ -33,10 +33,8 @@
 	@if ((string)ViewBag.Result == "Sent")
     {
         <div class="alert alert-success">
-            <span class="glyphicon glyphicon-ok"></span>
-            <span>
-                Your message has been sent successfully.
-            </span>
+            <i class="fas fa-check"></i>
+            <span> Your message has been sent successfully.</span>
         </div>
     }
     else if ((string)ViewBag.Result == "Error")

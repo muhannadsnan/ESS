@@ -13,7 +13,7 @@
         <div class="col-md-offset-5 col-md-2">
             <div class="row">
                 <a class="btn btn-default btn-block" href="Insurances/Create">
-                    <span class="glyphicon glyphicon-plus-sign"></span> Create New Insurance
+                    <i class="fas fa-plus-circle"></i> Create New Insurance
                 </a>
             </div>
         </div>
@@ -47,7 +47,7 @@
                 {
                     <td>
                         <a title="Delete" href=@Url.Action("Delete", new { id = item.Id }) onclick="return confirm('Are you sure you want to delete this insurance?')">
-                            <span class="glyphicon glyphicon glyphicon-trash" style="font-size:large"></span>
+                            <i class="fas fa-trash-alt fa-lg"></i>
                         </a>
                     </td>
                 }
@@ -69,20 +69,16 @@ else
     case "Created":
         {
             <div class="alert alert-success" id="error-div">
-                <span class="glyphicon glyphicon-ok"></span>
-                <span>
-                    The insurance has been created successfully.
-                </span>
+                <i class="fas fa-check"></i>
+                <span> The insurance has been created successfully.</span>
             </div>
         }
         break;
     case "Deleted":
         {
             <div class="alert alert-success" id="error-div">
-                <span class="glyphicon glyphicon-ok"></span>
-                <span>
-                    The insurance has been deleted successfully.
-                </span>
+                <i class="fas fa-check"></i>
+                <span> The insurance has been deleted successfully.</span>
             </div>
         }
         break;
