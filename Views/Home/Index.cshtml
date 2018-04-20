@@ -63,11 +63,12 @@
         </div>
 
         <div class="container">
+			<div class="card-deck justify-content-center">
             @foreach (var subItem in item.Items)
             {
                 <div class="col-sm-6 col-md-4">
-                    <div class="card text-primary bg-light mb-3">
-                        <img class="card-img-top" src="~/Uploads/@subItem.ItemImage" alt="@Html.DisplayFor(modelItem => item.CategoryName)">
+                    <div class="card text-primary bg-light mb-3" style="width:98%;height:350px;">
+                        <img class="card-img-top" style="height:200px" src="~/Uploads/@subItem.ItemImage" alt="@Html.DisplayFor(modelItem => item.CategoryName)">
                         <div class="card-body">
                             <h5 class="card-title text-primary">@Html.DisplayFor(modelItem => subItem.BrandName)</h5>                        
                             <p class="card-text">@Html.DisplayFor(modelItem => subItem.Color) @Html.DisplayFor(modelItem => subItem.ItemType.CategoryName) for @Html.DisplayFor(modelItem => subItem.Gender).</p>
@@ -75,8 +76,9 @@
                             @*<div class="card-footer"><small class="text-muted">3 days ago</small></div>*@
                         </div>
                     </div>
-                </div>                
+                </div>
             }
+			</div>
         </div>
     </div>                        
 }
