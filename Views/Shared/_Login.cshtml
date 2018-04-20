@@ -78,26 +78,26 @@
                     @if (UserRoleName == "Clients")
                     {
                         <a href="~/Orders/GetOrdersByUser" class="dropdown-item">
-                            <i class="fas fa-sign-in-alt"></i> Your Orders
+                            <i class="fas fa-list-ul"></i> Your Orders
                         </a>
                     }
                     else if (UserRoleName == "Employees")
                     {
                         <a href="~/Account/EmployeeTasksView" class="dropdown-item">
-                            <i class="material-icons">content_paste</i> Tasks
+                            <i class="fas fa-tasks"></i> Tasks
                         </a>
                     }
                     else if (UserRoleName == "Admins")
                     {
                         <a href="~/Account/ManagerTasksView" class="dropdown-item">
-                            <i class="material-icons">content_paste</i> Tasks
+                            <i class="fas fa-tasks"></i> Tasks
                         </a>
                     }
                     <a href="~/Account/EditProfile" class="dropdown-item">
-                        <i class="material-icons">content_paste</i> Account
+                        <i class="fas fa-pen-square"></i> Edit Account
                     </a>
                     <a href="javascript:document.getElementById('logoff').submit()" class="dropdown-item">
-                        <i class="material-icons">content_paste</i> Sign out
+                        <i class="fas fa-sign-out-alt"></i> Sign out
                     </a>
                 </div>
             </li>
@@ -116,7 +116,7 @@ else
                     <i class="fas fa-sign-in-alt"></i> Log in
                 </a>
                 <a href="~/Account/Register" class="dropdown-item">
-                    <i class="material-icons">content_paste</i> Sign up
+                    <i class="fas fa-user-plus"></i> Sign up
                 </a>
             </div>
         </li>
