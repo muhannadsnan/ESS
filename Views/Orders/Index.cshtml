@@ -12,46 +12,49 @@
 
 @using (Html.BeginForm("Search", "Orders", FormMethod.Post))
 {
-    <div class="row">
+    <div class="row justify-content-center">
         <div class="col-md-2">
-            <div class="row">
+            
                 <input type="search" name="OrderId" placeholder="Order Number" class="form-control" />
-            </div>
+            
         </div>
-        <div class="col-md-3">
-            <div class="row">
+        <div class="col-md-2">
+            
                 <input type="search" name="UserName" placeholder="User Name" class="form-control">
-            </div>
-            <div class="row">
+            
+            
                 <input type="search" name="ModelNumber" placeholder="Model Number" class="form-control">
-            </div>
-        </div><div class="col-md-3">
+            
+        </div>
+		<div class="col-md-3">
             <div class="form-group input-group">
-                <strong class="input-group-addon">From:</strong> <input type="date" name="FromDate" class="form-control " />
+                <span class="input-group-addon">From:</span> <input type="date" name="FromDate" class="form-control " />
             </div>
 
             <div class="form-group input-group">
-                <strong class="input-group-addon">To:&nbsp;&nbsp;&nbsp;&nbsp; </strong> <input type="date" name="ToDate" class="form-control" />
+                <span class="input-group-addon">To:&nbsp;&nbsp;&nbsp;&nbsp; </span> <input type="date" name="ToDate" class="form-control" />
             </div>
         </div>
         <div class="col-md-2">
-            <div class="row">
+            
                 @Html.DropDownList("AllStatus", null, htmlAttributes: new { @class = "form-control" })
-            </div>
-            <div class="row">
+            
+            
                 @if (User.IsInRole("Admins"))
                 {
                     @Html.DropDownList("BranchId", null, htmlAttributes: new { @class = "form-control" })
                 }
-            </div>
-        </div>
-        <div class="col-md-2">
-            <div class="row">
-                <button type="submit" value="Search" class="btn btn-default btn-block" >
-				<i class="fas fa-search"></i> Search</button>
-            </div>
+         
         </div>
     </div>
+	<div class="row justify-content-center">
+	<div class="col-md-2">
+            
+                <button type="submit" value="Search" class="btn btn-default btn-block" >
+				<i class="fas fa-search"></i> Search</button>
+            
+        </div>
+	</div>
 }
 @if (Model != null && Model.Count() > 0)
 {
@@ -124,7 +127,7 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Date)
                 </td>
-                <td>
+                 <td style="white-space:nowrap;">
                     @if (User.IsInRole("Employees"))
                     {
                         <a title="Edit" href=@Url.Action("Edit", new { id = item.Id })>

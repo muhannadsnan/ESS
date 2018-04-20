@@ -17,8 +17,9 @@
                         @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                         {
                             @Html.AntiForgeryToken()
-                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            
                             <div class="card-body">
+							@Html.ValidationSummary(true, "", new { @class = "text-danger" })
                                 <span class="bmd-form-group"><div class="input-group">
                                     <span class="input-group-addon pt-2 pr-2"></span>                                    
                                     @Html.TextBoxFor(m => m.UserName, new { placeholder = "User name", @class = "form-control" })

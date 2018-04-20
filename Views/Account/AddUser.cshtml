@@ -98,7 +98,7 @@ var my_func = function(event) {
 	var usertype= usertypelist.options[usertypelist.selectedIndex].value;
 	var branchlist=document.getElementById("BranchId");
 	var branch=branchlist.options[branchlist.selectedIndex].text;
-	if(usertype == "" || branch=="Select Branch" ){
+	if(usertype == "" || branch == "Select Branch" ){
 	alert("Make sure you select user type or branch!");
     event.preventDefault();
 	}

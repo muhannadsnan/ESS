@@ -14,32 +14,32 @@
 
 @using (Html.BeginForm("Search", "Quantities", FormMethod.Post))
 {
-    <div class="row">
+    <div class="row justify-content-center">
         <div class="col-md-2">
-            <div class="row">
+           
                 <input type="search" name="ModelNumber" placeholder="Model Number" class="form-control">
-            </div>
+         
         </div>
         <div class="col-md-2">
-            <div class="row">
+            
                 <input type="search" name="Description" placeholder="Description" class="form-control">
-            </div>
+            
         </div>
         <div class="col-md-2">
-            <div class="row">
+            
                 @Html.DropDownList("BranchId", null, new { @class = "form-control" })
-            </div>
+            
         </div>
         <div class="col-md-2">
-            <div class="row">
+            
                 <button type="submit" value="Search" class="btn btn-default btn-block">
                     <i class="fas fa-search"></i> Search
                 </button>
-            </div>
+            
         </div>
         @if (User.IsInRole("Admins"))
         {
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <a class="btn btn-default btn-block" href="~/Quantities/Create">
                     <i class="fas fa-plus-circle"></i> Add New Quantity
                 </a>
