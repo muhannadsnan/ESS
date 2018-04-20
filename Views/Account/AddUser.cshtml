@@ -4,91 +4,106 @@
     ViewBag.Title = "AddUser";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
-    
+<section>
     <div class="alert alert-primary">
-        <h2>Add User</h2>
+        <h2><a href="~/ApplicationUsers" class="pull-left"><i class="fas fa-arrow-alt-circle-left fa-lg"></i></a>Add User</h2>
     </div>
 
-    @using (Html.BeginForm())
+    @using (Html.BeginForm("AddUser", "Account", FormMethod.Post, new { id="MyForm" }))
     {
         @Html.AntiForgeryToken()
-
         <div class="col-md-8 col-lg-6 mx-auto pb-5 d-flex flex-column">
+			@Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="col-sm-12 col-md-10 mx-auto  my-3 py-1">
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                <div class="row">
-                    <div class="col-sm-12">
-                        @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
+                <div class="col-sm-12">
+                    <div class="">
+                        @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control", placeholder="User Name" } })
                         @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
                     </div>
                 </div>
             </div>
 
             <div class="col-sm-12 col-md-10 mx-auto  my-3 py-1">
-                <div class="row">
-                    <div class="col-sm-12">
-                        @Html.DropDownList("UserType", null, htmlAttributes: new { @class = "form-control" })
+                <div class="col-sm-12">
+                    <div class="">
+                        @Html.DropDownList("UserType", null, "Select User Type", htmlAttributes: new { @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.UserType, "", new { @class = "text-danger" })
                     </div>
                 </div>
             </div>
 
             <div class="col-sm-12 col-md-10 mx-auto  my-3 py-1">
-                <div class="row">
-                    <div class="col-sm-12">
-                        @Html.DropDownList("BranchId", null, htmlAttributes: new { @class = "form-control" })
+                <div class="col-sm-12">
+                    <div class="">
+                        @Html.DropDownList("BranchId", null,"Select Branch", htmlAttributes: new { @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.BranchId, "", new { @class = "text-danger" })
                     </div>
                 </div>
             </div>
 
             <div class="col-sm-12 col-md-10 mx-auto  my-3 py-1">
-                <div class="row">
-                    <div class="col-sm-12">
-                        @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
+                <div class="col-sm-12">
+                    <div class="">
+                        @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control", placeholder="Phone Number" } })
                         @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
                     </div>
                 </div>
             </div>
 
             <div class="col-sm-12 col-md-10 mx-auto  my-3 py-1">
-                <div class="row">
-                    <div class="col-sm-12">
-                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                <div class="col-sm-12">
+                    <div class="">
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", placeholder="Email" } })
                         @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
                     </div>
                 </div>
             </div>
 
             <div class="col-sm-12 col-md-10 mx-auto  my-3 py-1">
-                <div class="row">
-                    <div class="col-sm-12">
-                        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                <div class="col-sm-12">
+                    <div class="">
+                        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", placeholder="Password" } })
                         @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
                     </div>
                 </div>
             </div>
 
             <div class="col-sm-12 col-md-10 mx-auto  my-3 py-1">
-                <div class="row">
-                    <div class="col-sm-12">
-                        @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control" } })
+                <div class="col-sm-12">
+                    <div class="">
+                        @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control", placeholder="Confirm Password" } })
                         @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
                     </div>
                 </div>
             </div>
 
-            <div class="col-sm-12 col-md-10 mx-auto  my-3 py-1">
-                <div class="row">
-                    <div class="col-md-2">
+            @*<div class="col-sm-12 col-md-10 mx-auto  my-3 py-1">
+                <div class="col-sm-12">
+                    <div class="">
                         <a href=@Url.Action("Index","ApplicationUsers") class="btn btn-default btn-block">
                             <span class="glyphicon glyphicon-arrow-left"></span> Back to Users List
                         </a>
                     </div>
-            </div>
-            
+				</div>
+            </div>*@
             <div class="row d-flex justify-content-between">
-                <input type="submit" value="Create" class="btn btn-primary col-9 mx-auto" />
+                <input type="submit" value="Add" class="btn btn-primary col-9 mx-auto" />
             </div>
         </div>
     }
+</section>
+<script type="text/javascript">
+var my_func = function(event) {
+	var usertypelist=document.getElementById("UserType");
+	var usertype= usertypelist.options[usertypelist.selectedIndex].value;
+	var branchlist=document.getElementById("BranchId");
+	var branch=branchlist.options[branchlist.selectedIndex].text;
+	if(usertype == "" || branch=="Select Branch" ){
+	alert("Make sure you select user type or branch!");
+    event.preventDefault();
+	}
+    
+};
+var form = document.getElementById("MyForm");
+form.addEventListener("submit", my_func, true);
+</script>

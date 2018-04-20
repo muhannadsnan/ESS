@@ -5,12 +5,12 @@
     ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
-
+<section>
 <div class="alert alert-primary">
-    <h2>Edit User</h2>
+    <h2><a href="~/ApplicationUsers" class="pull-left"><i class="fas fa-arrow-alt-circle-left fa-lg"></i></a>Edit User</h2>
 </div>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Edit", "ApplicationUsers", FormMethod.Post, new { id="MyForm" }))
 {
     @Html.AntiForgeryToken()
 
@@ -22,7 +22,7 @@
             <div class="col-sm-12 col-md-10 mx-auto  my-3 py-1">
                 <div class="row">
                     <div class="col-sm-12">
-                        @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control", placeholder="User Name" } })
                         @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -31,7 +31,7 @@
             <div class="col-sm-12 col-md-10 mx-auto  my-3 py-1">
                 <div class="row">
                     <div class="col-sm-12">
-                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", placeholder="Email" } })
                         @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -40,7 +40,7 @@
             <div class="col-sm-12 col-md-10 mx-auto  my-3 py-1">
                 <div class="row">
                     <div class="col-sm-12">
-                        @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control", placeholder="Phone Number" } })
                         @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -48,9 +48,8 @@
 
             <div class="col-sm-12 col-md-10 mx-auto  my-3 py-1">
                 <div class="row">
-                    @Html.Label("", "Branch", new { @class = "control-label col-md-2 col-md-offset-2" } )
                     <div class="col-sm-12">
-                        @Html.DropDownList("BranchId", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.DropDownList("BranchId", null,"Select Branch", htmlAttributes: new { @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.BranchId, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -58,9 +57,8 @@
             
             <div class="col-sm-12 col-md-10 mx-auto  my-3 py-1">
                 <div class="row">
-                    @Html.Label("User Type", htmlAttributes: new { @class = "control-label col-md-2 col-md-offset-2" })
                     <div class="col-sm-12">
-                        @Html.DropDownList("UserType", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.DropDownList("UserType", null, "Select User Type", htmlAttributes: new { @class = "form-control" })
                     </div>
                 </div>
             </div>
@@ -71,10 +69,26 @@
         </div>
     </div>
 }
-                <div class="row">
+                @*<div class="row">
                     <div class="col-md-2">
                         <a href="~/ApplicationUsers" class="btn btn-default btn-block">
                             <span class="glyphicon glyphicon-arrow-left"></span> Back to Users List
                         </a>
                     </div>
-                </div>
+                </div>*@
+</section>
+<script type="text/javascript">
+var my_func = function(event) {
+	var usertypelist=document.getElementById("UserType");
+	var usertype= usertypelist.options[usertypelist.selectedIndex].value;
+	var branchlist=document.getElementById("BranchId");
+	var branch=branchlist.options[branchlist.selectedIndex].text;
+	if(usertype == "" || branch=="Select Branch" ){
+	alert("Make sure you select user type or branch!");
+    event.preventDefault();
+	}
+    
+};
+var form = document.getElementById("MyForm");
+form.addEventListener("submit", my_func, true);
+</script>

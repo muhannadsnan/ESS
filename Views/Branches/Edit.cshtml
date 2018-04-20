@@ -4,9 +4,9 @@
     ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
-
+<section>
 <div class="alert alert-primary">
-    <h2>Edit Branch</h2>
+    <h2><a href="~/ApplicationUsers" class="pull-left"><i class="fas fa-arrow-alt-circle-left fa-lg"></i></a>Edit Branch</h2>
 </div>
 
 @using (Html.BeginForm())
@@ -20,7 +20,7 @@
         <div class="col-sm-12 col-md-10 mx-auto  my-3 py-1">
             <div class="row">
                 <div class="col-sm-12">
-                    @Html.EditorFor(model => model.BranchName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.BranchName, new { htmlAttributes = new { @class = "form-control", placeholder="Branch Name" } })
                     @Html.ValidationMessageFor(model => model.BranchName, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -29,7 +29,7 @@
         <div class="col-sm-12 col-md-10 mx-auto  my-3 py-1">
             <div class="row">
                 <div class="col-sm-12">
-                    @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control", placeholder="Phone Number" } })
                     @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -38,7 +38,7 @@
         <div class="col-sm-12 col-md-10 mx-auto  my-3 py-1">
             <div class="row">
                 <div class="col-sm-12">
-                    @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control", placeholder="Address" } })
                     @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -50,10 +50,11 @@
     </div>
 }
 
-<div class="row">
+@*<div class="row">
                 <div class="col-md-2">
                     <a href=@Url.Action("Index") class="btn btn-default btn-block">
                         <span class="glyphicon glyphicon-arrow-left"></span> Back to Branches List
                     </a>
                 </div>
-            </div>
+            </div>*@
+</section>

@@ -5,9 +5,9 @@
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
 
-
+<section>
 <div class="alert alert-primary">
-    <h2>Edit Profile</h2>
+    <h2><a href="~/Home" class="pull-left"><i class="fas fa-arrow-alt-circle-left fa-lg"></i></a>Edit Profile</h2>
 </div>
 
 @if (ViewBag.Result == null || ViewBag.Result == "The Password is incoreect.")
@@ -24,7 +24,7 @@
                 <div class="col-sm-12 col-md-10 mx-auto  my-3 py-1">
                     <div class="row">
                         <div class="col-sm-12">
-                            @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control", placeholder="User Name"  } })
                             @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -33,7 +33,7 @@
                 <div class="col-sm-12 col-md-10 mx-auto  my-3 py-1">
                     <div class="row">
                         <div class="col-sm-12">
-                            @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control", placeholder="Phone Number" } })
                             @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -42,7 +42,7 @@
                 <div class="col-sm-12 col-md-10 mx-auto  my-3 py-1">
                     <div class="row">
                         <div class="col-sm-12">
-                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", placeholder="Email"  } })
                             @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -51,7 +51,7 @@
                 <div class="col-sm-12 col-md-10 mx-auto  my-3 py-1">
                     <div class="row">
                         <div class="col-sm-12">
-                            @Html.EditorFor(model => model.CurrentPassword, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.EditorFor(model => model.CurrentPassword, new { htmlAttributes = new { @class = "form-control", placeholder="Current Password"  } })
                             @Html.ValidationMessageFor(model => model.CurrentPassword, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -60,7 +60,7 @@
                 <div class="col-sm-12 col-md-10 mx-auto  my-3 py-1">
                     <div class="row">
                         <div class="col-sm-12">
-                            @Html.EditorFor(model => model.NewPassword, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.EditorFor(model => model.NewPassword, new { htmlAttributes = new { @class = "form-control", placeholder="New Password"  } })
                             @Html.ValidationMessageFor(model => model.NewPassword, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -69,21 +69,15 @@
                 <div class="col-sm-12 col-md-10 mx-auto  my-3 py-1">
                     <div class="row">
                         <div class="col-sm-12">
-                            @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control", placeholder="Confirm Password"  } })
                             @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
                         </div>
                     </div>
                 </div>
 
-                <div class="col-sm-12 col-md-10 mx-auto  my-3 py-1">
-                    <div class="row">
-                        <div class="col-md-offset-5 col-md-2">
-                            <button type="submit" value="Save" class="btn btn-default btn-block">
-                                <span class="glyphicon glyphicon-floppy-disk"></span> Save
-                            </button>
-                        </div>
-                    </div>
-                </div>
+               <div class="row d-flex justify-content-between">
+                <input type="submit" value="Save" class="btn btn-primary col-9 mx-auto" />
+            </div>
             </div>
         </div>
     }
@@ -93,7 +87,7 @@ else
 {
     <h3>@ViewBag.Result</h3>
 }
-<div class="col-sm-12 col-md-10 mx-auto  my-3 py-1">
+@*<div class="col-sm-12 col-md-10 mx-auto  my-3 py-1">
     <div class="row">
         <div class="col-md-2">
             <a href="~/Home" class="btn btn-primary col-9 mx-auto">
@@ -105,5 +99,6 @@ else
 
 <div class="row d-flex justify-content-between">
     <input type="submit" value="Send" class="" />
-</div>
+</div>*@
 
+</section>

@@ -5,32 +5,30 @@
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
 
-
+<section>
 <div class="alert alert-primary">
-    <h2>Edit Item</h2>
+    <h2><a href="~/Items" class="pull-left"><i class="fas fa-arrow-alt-circle-left fa-lg"></i></a>Edit Item</h2>
 </div>
 
-@using (Html.BeginForm("Edit", "Items", FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm("Edit", "Items", FormMethod.Post, new { enctype = "multipart/form-data", id="MyForm" }))
 {
     @Html.AntiForgeryToken()
     
     <div class="col-md-8 col-lg-6 mx-auto pb-5 d-flex flex-column">                 
         <div class="col-sm-12 col-md-10 mx-auto  my-3 py-1">
             <div class="alert alert-danger" id="error-div" style="display:none">
-                <span id="view-err">
-                    // PLEASE ADD A MESSAGE HERE
-                </span>
+                <span id="view-err"></span>
             </div>
-            <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             @Html.HiddenFor(model => model.Id)
             @Html.HiddenFor(model => model.ItemImage)
         </div>
 
-        <div class="col-sm-12 col-md-10 mx-auto  my-3 py-1">
+        <div class="col-sm-12 col-md-10 mx-auto  my-3 py-1"> 
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="row">
                 <div class="col-sm-12">
-                    @Html.EditorFor(model => model.BrandName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.BrandName, new { htmlAttributes = new { @class = "form-control", placeholder="Brand Name" } })
                     @Html.ValidationMessageFor(model => model.BrandName, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -39,7 +37,7 @@
         <div class="col-sm-12 col-md-10 mx-auto  my-3 py-1">
             <div class="row">
                 <div class="col-sm-12">
-                    @Html.DropDownList("CategoryId", null , htmlAttributes: new { @class = "form-control" })
+                    @Html.DropDownList("CategoryId", null, "Select Item Category", htmlAttributes: new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -48,7 +46,7 @@
         <div class="col-sm-12 col-md-10 mx-auto  my-3 py-1">
             <div class="row">
                 <div class="col-sm-12">
-                    @Html.EditorFor(model => model.ModelNumber, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.ModelNumber, new { htmlAttributes = new { @class = "form-control", placeholder="Model Number" } })
                     @Html.ValidationMessageFor(model => model.ModelNumber, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -57,7 +55,9 @@
         <div class="col-sm-12 col-md-10 mx-auto  my-3 py-1">
             <div class="row">
                 <div class="col-sm-12">
-                    <input type="file" name="upload" id="myImage" />
+					<input type="button" value="Select Item Image" class="btn btn-default col-9 mx-auto" onclick="document.getElementById('myImage').click();" />
+                    <input type="file" name="upload" id="myImage" style="display:none;" onchange="imageSelected()" />
+					<br><span id="ImageMessage">@Model.ItemImage</span>
                     @Html.ValidationMessageFor(model => model.ItemImage, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -66,7 +66,7 @@
         <div class="col-sm-12 col-md-10 mx-auto  my-3 py-1">
             <div class="row">
                 <div class="col-sm-12">
-                    @Html.EditorFor(model => model.Color, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.Color, new { htmlAttributes = new { @class = "form-control", placeholder="Color" } })
                     @Html.ValidationMessageFor(model => model.Color, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -75,7 +75,7 @@
         <div class="col-sm-12 col-md-10 mx-auto  my-3 py-1">
             <div class="row">
                 <div class="col-sm-12">
-                    @Html.EditorFor(model => model.FrameMaterial, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.FrameMaterial, new { htmlAttributes = new { @class = "form-control", placeholder="Frame Material" } })
                     @Html.ValidationMessageFor(model => model.FrameMaterial, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -84,7 +84,7 @@
         <div class="col-sm-12 col-md-10 mx-auto  my-3 py-1">
             <div class="row">
                 <div class="col-sm-12">
-                    @Html.EditorFor(model => model.FrameDesign, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.FrameDesign, new { htmlAttributes = new { @class = "form-control", placeholder="Frame Design" } })
                     @Html.ValidationMessageFor(model => model.FrameDesign, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -93,7 +93,7 @@
         <div class="col-sm-12 col-md-10 mx-auto  my-3 py-1">
             <div class="row">
                 <div class="col-sm-12">
-                    @Html.EditorFor(model => model.LensMaterial, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.LensMaterial, new { htmlAttributes = new { @class = "form-control", placeholder="Lens Material" } })
                     @Html.ValidationMessageFor(model => model.LensMaterial, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -102,7 +102,7 @@
         <div class="col-sm-12 col-md-10 mx-auto  my-3 py-1">
             <div class="row">
                 <div class="col-sm-12">
-                    @Html.EditorFor(model => model.LensDesign, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.LensDesign, new { htmlAttributes = new { @class = "form-control", placeholder="Lens Design" } })
                     @Html.ValidationMessageFor(model => model.LensDesign, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -111,7 +111,7 @@
         <div class="col-sm-12 col-md-10 mx-auto  my-3 py-1">
             <div class="row">
                 <div class="col-sm-12">
-                    @Html.EditorFor(model => model.Gender, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.Gender, new { htmlAttributes = new { @class = "form-control", placeholder="Gender" } })
                     @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -120,7 +120,7 @@
         <div class="col-sm-12 col-md-10 mx-auto  my-3 py-1">
             <div class="row">
                 <div class="col-sm-12">
-                    @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control", placeholder="Price" } })
                     @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -131,7 +131,7 @@
         </div>
     </div>
 }
-<div class="col-sm-12 col-md-10 mx-auto  my-3 py-1">
+@*<div class="col-sm-12 col-md-10 mx-auto  my-3 py-1">
             <div class="row">
                 <div class="col-md-2">
                     <a href="~/Items" class="btn btn-default btn-block">
@@ -144,11 +144,26 @@
                     <span class="glyphicon glyphicon-floppy-disk"></span> Save
                 </button>
             </div>
-        </div>
+        </div>*@
 
-
+</section>
 @section scripts{
 <script>
+		var my_func = function(event) {
+		var itemtypelist=document.getElementById("CategoryId");
+		var itemtype= itemtypelist.options[itemtypelist.selectedIndex].value;
+		if(itemtype == ""){
+		alert("Make sure you select item type!");
+		event.preventDefault();
+		}};
+		var form = document.getElementById("MyForm");
+		form.addEventListener("submit", my_func, true);
+		function imageSelected(){
+			var file = document.getElementById('myImage').files[0];
+			if (file) {
+				document.getElementById("ImageMessage").innerHTML=file.name;
+			}
+		}
         $(function () {
             $("#save").click(function () {
                     //Check if the image is exist.

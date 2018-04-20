@@ -4,9 +4,9 @@
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
 
-
+<section>
 <div class="alert alert-primary">
-    <h2>Edit Order</h2>
+    <h2><a href="~/Orders" class="pull-left"><i class="fas fa-arrow-alt-circle-left fa-lg"></i></a>Edit Order</h2>
 </div>
 
 @using (Html.BeginForm())
@@ -19,8 +19,7 @@
             @Html.HiddenFor(model => model.Id)
             <div class="row">
                 <div class="col-sm-12">
-                    @Html.EditorFor(model => model.Id, new { htmlAttributes = new { @class = "form-control" , disabled="disabled"} })
-                    @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
+					<strong>Order No: @Model.Id</strong>  
                 </div>
             </div>
         </div>
@@ -28,17 +27,15 @@
         <div class="col-sm-12 col-md-10 mx-auto  my-3 py-1">
             <div class="row">
                 <div class="col-sm-12">
-                    @Html.EditorFor(Model => Model.User.UserName, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
-                    @Html.ValidationMessageFor(model => model.UserId, "", new { @class = "text-danger" })
-                </div>
+					<strong>Client Name: @Model.User.UserName</strong>
+				</div>
             </div>
         </div>
 
         <div class="col-sm-12 col-md-10 mx-auto  my-3 py-1">
             <div class="row">
                 <div class="col-sm-12">
-                    @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
-                    @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+				<strong>Price: @Model.Price</strong>
                 </div>
             </div>
         </div>
@@ -58,7 +55,7 @@
     </div>
 }
 
-<div class="col-sm-12 col-md-10 mx-auto  my-3 py-1">
+@*<div class="col-sm-12 col-md-10 mx-auto  my-3 py-1">
             <div class="row">
                 <div class="col-md-2">
                     <a href="~/Orders" class="btn btn-default btn-block">
@@ -69,4 +66,4 @@
             <div class="col-md-offset-3 col-md-2">
                 <input type="submit" value="Save" class="btn btn-default btn-block" />
             </div>
-        </div>
+        </div>*@
