@@ -19,7 +19,7 @@
 
 <body class="index-page">
     <nav class="navbar navbar-color-on-scroll navbar-transparent fixed-top navbar-expand-lg " color-on-scroll="100" id="sectionsNav">
-        <div class="container">
+        <div class="container d-print-none">
             <div class="navbar-translate">
                 <a class="navbar-brand logo-white" href="~/Home/Index"><img src="~/Images/logo-white.png" alt=""></a>
                 <a class="navbar-brand logo-black" style="display: none" href="~/Home/Index"><img src="~/Images/logo-black.png" alt=""></a>
@@ -96,7 +96,7 @@
     }
     <!-- if home page show this div in the master page-->
     <div class="page-header header-filter clear-filter @ViewBag.height purple-filter " data-parallax="true">
-            <div class="container">
+            <div class="container d-print-none">
                 <div class="row">
                     <div class="col-md-8 ml-auto mr-auto">
                         <div class="brand @ViewBag.display">
@@ -109,7 +109,7 @@
     </div>
 
 <!-- MAIN BODY -->
-    <div id="main-body" class="main main-raised @ViewBag.marginTop30 col-sm-11 col-md-10 col-lg-9 col-xl-8 ml-auto mr-auto">
+    <div id="main-body" class="main main-raised @ViewBag.marginTop30 col-sm-11 col-md-10 col-lg-9 col-xl-8 ml-auto mr-auto ">
         <!--Render Body-->
         <div class="container text-center">
             <div class="row">
@@ -122,7 +122,7 @@
 
 
     <footer class="footer ">
-        <div class="container">
+        <div class="container d-print-none">
             <nav class="pull-left">
                 <ul>
                     <li>
