@@ -9,8 +9,10 @@ input[type="text"]
     padding: 10px
 input[type="number"]
     padding: 10px
-select
+input[type="password"]
     padding: 10px
+select.form-control  
+    -webkit-appearance: menulist 
 .form-check .form-check-input:checked+.form-check-sign .check 
     background: #9c27b0
 .navbar 
@@ -90,6 +92,8 @@ select
             width: 250px
             padding: 10px
             border-top: 1px solid #ccc  
+        a svg
+                margin-right: 15px 
 .alert
     padding: 10px
     width: 100%
@@ -154,3 +158,9 @@ section
                 +transition(all 350ms ease-out)
                 font-family: 'FontAwesome';
                 padding-right: 10px
+
+.modal-backdrop               
+    z-index: unset
+
+.modal-content.panel.panel-primary
+    top: 20px 

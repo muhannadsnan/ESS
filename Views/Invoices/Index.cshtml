@@ -106,15 +106,15 @@
                             @Html.DisplayFor(modelItem => item.Date)
                         </td>
                         <td style="white-space:nowrap;">
-                            <a title="Details" @@click="fetchDetails(@item.Id)" data-toggle="modal" data-target="#myModal">
-                                <i class="fas fa-file-alt fa-lg" style="color:#a72abd"></i>
-                            </a>@if (User.IsInRole("Admins"))
+                            <a title="Details" @@click="fetchDetails(@item.Id)" data-toggle="modal" data-target="#invoiceDetailsModal">
+                                <i class="fas fa-file-alt fa-lg" style="color:#a72abd; cursor: pointer;"></i>
+                            </a>
+                            @if (User.IsInRole("Admins"))
                             {
-                                    <span>|</span><a title="Delete" href=@Url.Action("Delete", new { id = item.Id }) onclick="return confirm('Are you sure you want to delete this invoice?')">
-                                        <i class="fas fa-trash-alt fa-lg"></i>
-                                    </a>
-                            }
-                            
+                                <span>|</span><a title="Delete" href=@Url.Action("Delete", new { id = item.Id }) onclick="return confirm('Are you sure you want to delete this invoice?')">
+                                    <i class="fas fa-trash-alt fa-lg"></i>
+                                </a>
+                            }                            
                         </td>
                     </tr>
                 }
@@ -176,20 +176,20 @@
         <script>
         $(document).ready( function() {
             $("#error-div").delay(3000).fadeOut();
-    });
+        });
         </script>
     }
 
 
     <!--------------- Modal ---------------->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal fade" id="invoiceDetailsModal" tabindex="-1" role="dialog" aria-labelledby="invoiceDetailsModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content panel panel-primary">
                 <div class="modal-header panel-heading">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <h3 class="modal-title text-center" id="myModalLabel">Invoice Details</h3>
+                    <h3 class="modal-title text-center" id="invoiceDetailsModalLabel">Invoice Details</h3>
                 </div>
                 <div class="modal-body">
                     <!---- MODAL BODY ------>
@@ -257,9 +257,10 @@
         </div>
     </div>
 </div>     
-<!--------------------------END: MODAL----------------------------->
+<!--------------------------END: MODAL------------------------------>
      
 @*<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>*@
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="https://unpkg.com/vue-toastr-2/dist/vue-toastr-2.js"></script>
 <script>
@@ -325,5 +326,7 @@ function myFunction() {
             }
         })
 </script>
+@*<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>*@
+<script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
 @*<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>*@
 <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
