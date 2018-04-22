@@ -104,10 +104,12 @@ select.form-control {
 .alert {
   padding: 10px;
   width: 100%; }
-  .alert.alert-primary h1, .alert.alert-primary h2, .alert.alert-primary h3, .alert.alert-primary h4, .alert.alert-primary h5, .alert.alert-primary h6, .alert.alert-primary a {
-    color: #ccc; }
-  .alert.alert-primary a:hover {
-    color: #fff; }
+  .alert.alert-primary {
+    border-radius: 7px 7px 0px 0px; }
+    .alert.alert-primary h1, .alert.alert-primary h2, .alert.alert-primary h3, .alert.alert-primary h4, .alert.alert-primary h5, .alert.alert-primary h6, .alert.alert-primary a {
+      color: #ccc; }
+    .alert.alert-primary a:hover {
+      color: #fff; }
 
 .btn-primary {
   background: #9c27b0; }
@@ -138,7 +140,6 @@ section {
 #main-body {
   min-height: 600px;
   padding: 0px 0px;
-  overflow: hidden;
   border-radius: 7px; }
 
 #carousel .carousel-inner .carousel-item img {
@@ -173,7 +174,8 @@ section {
     padding-right: 10px; }
 
 .modal-backdrop {
-  z-index: unset; }
+  z-index: 1;
+  opacity: 1; }
 
-.modal-content.panel.panel-primary {
-  top: 20px; }
+.modal-dialog {
+  z-index: 3; }

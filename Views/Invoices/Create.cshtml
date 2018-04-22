@@ -63,6 +63,7 @@
                         <span v-show="!loadingSubmit">Create invoice <i class="fas fa-paper-plane fa-1x"></i></span>
                     </button>
                 </div>
+
                 @if (User.IsInRole("Admins"))
                 {
                     <div class="form-group row">
@@ -87,7 +88,7 @@
                 <!-------------------- Model Number -------------------->
                 <div class="form-group row animate1" :class="{'animate2': invoice.client.phone && invoice.client.name && invoice.client.phone.length == 10}">
                     <label for="item_model" class="col-md-3">Item</label>
-                    <div class="col-md-9" :class="{'col-md-8': loading, 'col-md-9': !loading}">
+                    <div class="col-md-9" :class="{'col-md-': loading, 'col-md-9': !loading}">
                         <input type="text" v-model="newItem.model" @@keyup.enter="requestItemByModel()" id="item_model" placeholder="Model number.. press enter"
                                class="form-control" data-toggle="tooltip" data-placement="right" title="Tooltip on ..">
                     </div>

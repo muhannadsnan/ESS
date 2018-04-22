@@ -98,6 +98,7 @@ select.form-control
     padding: 10px
     width: 100%
     &.alert-primary
+        border-radius: 7px 7px 0px 0px
         h1,h2,h3,h4,h5,h6,a
             color: #ccc
         a:hover
@@ -126,7 +127,7 @@ section
 #main-body
     min-height: 600px
     padding: 0px 0px   
-    overflow: hidden
+    //overflow: hidden
     border-radius: 7px  
 #carousel
     .carousel-inner
@@ -159,8 +160,9 @@ section
                 font-family: 'FontAwesome';
                 padding-right: 10px
 
-.modal-backdrop               
-    z-index: unset
+.modal-backdrop 
+    z-index: 1
+    opacity: 1  
 
-.modal-content.panel.panel-primary
-    top: 20px 
+.modal-dialog
+    z-index: 3

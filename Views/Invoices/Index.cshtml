@@ -112,7 +112,7 @@
                             @if (User.IsInRole("Admins"))
                             {
                                 <span>|</span><a title="Delete" href=@Url.Action("Delete", new { id = item.Id }) onclick="return confirm('Are you sure you want to delete this invoice?')">
-                                    <i class="fas fa-trash-alt fa-lg"></i>
+                                    <i class="fas fa-trash-alt fa-lg ml-1"></i>
                                 </a>
                             }                            
                         </td>
@@ -186,17 +186,17 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content panel panel-primary">
                 <div class="modal-header panel-heading">
+                    <h3 class="modal-title w-100" id="invoiceDetailsModalLabel">Invoice Details</h3>                    
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <h3 class="modal-title text-center" id="invoiceDetailsModalLabel">Invoice Details</h3>
                 </div>
                 <div class="modal-body">
                     <!---- MODAL BODY ------>
-                    <h1 v-show="loading"><i class="fas fa-spinner"></i></h1>
+                    <h1 v-show="loading"><i class="fas fa-spinner fa-spin"></i></h1>
                     <div v-show="!loading">
-                        <div class="panel panel-primary text-center ">
-                            <div class="panel-body">
+                        <div class="panel panel-primary">
+                            <div class="panel-body text-left">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <p><strong>Invoice Number: </strong> <span>{{selectedInvoice.InvoiceId}}</span></p>
@@ -213,22 +213,22 @@
                                 <p><strong>Discount: </strong> <span>{{selectedInvoice.Discount}}%</span></p>
                                 <p><strong>Final Price: </strong> <span>{{selectedInvoice.Total - (selectedInvoice.Total * ( selectedInvoice.Discount / 100 ))}}</span></p>
                                 <hr />
-                                <div class="form-group row" v-for="(eye, i) in selectedInvoice.Eyes">
+                                <div class="form-group" v-for="(eye, i) in selectedInvoice.Eyes">
                                     <label v-if="eye.IsRightEye == false">Left Eye</label>
                                     <label v-if="eye.IsRightEye == true">Right Eye</label>
                                     <div class="input-group form-group">
                                         <span class="input-group-addon">Sphere</span>
-                                        <span class="form-control">{{eye.Sphere}}</span>
+                                        <strong class="pl-2 pr-4">{{eye.Sphere}}</strong>
                                         <span class="input-group-addon">Cylinder</span>
-                                        <span class="form-control">{{eye.Cylinder}}</span>
+                                        <strong class="pl-2 pr-4">{{eye.Cylinder}}</strong>
                                         <span class="input-group-addon">Axis</span>
-                                        <span class="form-control">{{eye.Axis}}</span>
+                                        <strong class="pl-2 pr-4">{{eye.Axis}}</strong>
                                         <span class="input-group-addon">Addition</span>
-                                        <span class="form-control">{{eye.Addition}}</span>
+                                        <strong class="pl-2 pr-4">{{eye.Addition}}</strong>
                                     </div>
                                 </div>
                                 <hr />
-                                <div class="form-group row" >
+                                <div class="form-group" >
                                     <label>Items</label>
                                     <table class="table table-hover">
                                         <tr>
@@ -249,8 +249,8 @@
                         </div>
                     </div>
                 </div><!-------- END: MODAL BODY ------------>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     <button Class="btn btn-warning" onclick="myFunction()">Print this page</button>
                 </div>
             </div>
