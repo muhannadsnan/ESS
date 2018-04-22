@@ -8,15 +8,55 @@
     dynamic[] branchesdb = db.Branches.Select(i => new { i.Id, i.BranchName }).ToArray();
 }
 
+
+<style>
+    #app{position: relative; overflow: hidden;}
+    .apploader{z-index: 9999; position: absolute; left: 50%;}
+    .loaded{z-index: -9999; }
+    label{padding: 0; margin: 0; text-align: center; line-height:35px;}
+    h3{margin-top: 12px;}
+    span.del{color: red; cursor: pointer; padding: 5px;}
+    ul{padding-left: 18px;}
+    ._bold{font-weight: bolder;}
+    .mt-5{margin-top: 50px;}
+    .top--135{top: -135px !important;}
+    .input-group input[type="number"]{padding: 1px; text-align: center;}
+    .input-group span{padding: 5px; background-color: #f7f7f7;}
+    .animate1{position: relative; top: -30px; opacity: 0; z-index: -999; height: 0px; }
+    .animate11{position: relative; top: -70px; opacity: 0; z-index: -999; height: 0px; }
+    .animate2{position: relative; top: 0; opacity: 1; z-index: 1; height: auto; 
+        transition: opacity,top .6s;
+        -webkit-transition: opacity,top .6s; 
+        -moz-transition: opacity,top .6s; 
+        -ms-transition: opacity,top .6s; 
+        -o-transition: opacity,top .6s; }
+    .animate22{position: relative; top: 0; opacity: 1; z-index: 1;  height: auto; 
+        transition: opacity,top .5s;
+        -webkit-transition: opacity,top .5s; 
+        -moz-transition: opacity,top .5s; 
+        -ms-transition: opacity,top .5s; 
+        -o-transition: opacity,top .5s; }
+    [v-cloak] { display: none; }
+    .animate-submitted0{position: relative; top: -1px; right: -1px;
+        transition: all .5s ease, right 2s ease .5s, opacity .5s ease .5s, -webkit-transform 1s .5s;
+        -webkit-transition: all .5s ease, right 2s ease .5s, opacity .5s ease .5s, -webkit-transform 1s .5s;
+    }
+    .animate-submitted1{position: relative; top: -100px; width: 270px;
+        transform: rotate(180deg); -webkit-transform: rotate(180deg); opacity: 0; right: -1000px;}
+    /**
+    li.fixtures:hover +  li.hidden{
+        display: block;
+    }*/
+    input[type='number']#client_phone{-moz-appearance:textfield;} #client_phone::-webkit-outer-spin-button,#client_phone::-webkit-inner-spin-button { -webkit-appearance: none; }
+</style>
+
 <div id="app">
+    <div class="alert alert-primary">
+        <h2><a href="~/Invoices" class="pull-left"><i class="fas fa-arrow-alt-circle-left fa-lg"></i></a>Create invoice <i class="fas fa-file-alt"></i></h2>
+    </div>
     <div class="container-fluid" v-cloak>
         <div class="row">
-            <div class="col-md-8 col-md-offset-2 text-center">
-                <h1>{{title}} <i class="fas fa-file-alt"></i></h1>
-                <hr>
-            </div>
-
-            <div class="col-md-5 col-md-offset-2">
+            <div class="col-md-5 mx-auto">
                 <div class="form-group animate1" :class="{'animate2': invoice.items.length > 0}" v-if="invoice.items.length > 0 && invoice.insurance.name">
                     <button class="btn btn-primary btn-block" @@click="onSubmit()" :disabled="loadingSubmit">
                         <span v-show="loadingSubmit">Sending invoice... <i class="fas fa-hourglass-end fa-spin fa-1x"></i></span>
@@ -57,7 +97,7 @@
                 <div class="animate11" :class="{'animate22': newItem.price}">
                     <div class="form-group row" :class="{'animate2': invoice.client.model}">
                         <label for="title" class="col-md-3">Title</label>
-                        <div class="col-md-9"><input type="text" v-model="newItem.title" id="title" placeholder="Title.." class="form-control col-md-8 item_model" disabled="disabled"></div>
+                        <div class="col-md-9"><input type="text" v-model="newItem.title" id="title" placeholder="Title.." class="form-control col-md-8X item_model" disabled="disabled"></div>
                     </div>
                     <div class="form-group row">
                         <label for="price" class="col-md-3">price</label>
@@ -68,14 +108,14 @@
                         <div class="col-md-9"><input type="number" v-model="newItem.quantity" @@keyup.enter="addProd()" id="quantity" placeholder="quantity" class="form-control" min="1"></div>
                     </div>
 
-                    <div class="row">
+                    <div class="row justify-content-center">
                         <button class="btn btn-success" @@click="addProd()" :disabled="!newItem.model || !newItem.price || !newItem.quantity">
-                            <i class="fas fa-plus-circle"></i> add product
+                            <i class="fas fa-plus-circle fa-lg"></i> add product
                         </button>
                     </div>
                 </div>
                 <!--------------- INSURANCE ---------------->
-                <div class="animate1" :class="{'animate2': invoice.items.length > 0, 'top--135': !newItem.model || !newItem.price}"
+                <div class="animate1" :class="{'animate2': invoice.items.length > 0, 'top--135X': !newItem.model || !newItem.price}"
                      style="width: 100%; height: 35px; overflow: hidden;">
                     <div class="form-group row">
                         <label for="insurance" class="col-md-3">Insurance</label>
@@ -87,27 +127,31 @@
                     </div>
                 </div>
                 <!---------------- EYES ---------------->
-                <div class="animate1" :class="{'animate2': invoice.insurance.name && invoice.items.length > 0, 'top--135': !newItem.model || !newItem.price}">
-                    <div class="form-group row">
+                <div class="animate1" :class="{'animate2': invoice.insurance.name && invoice.items.length > 0, 'top--135X': !newItem.model || !newItem.price}">
+                    <div class="form-group">
                         <label for="">Left eye</label>
                         <div class="input-group form-group">
                             <span class="input-group-addon">Sphere</span>
                             <input type="number" class="form-control" v-model="invoice.leftEye.sphere" step="0.25">
                             <span class="input-group-addon">Cylinder</span>
                             <input type="number" class="form-control" v-model="invoice.leftEye.cylinder" step="0.25">
+                        </div>
+                        <div class="input-group form-group">
                             <span class="input-group-addon">Axis</span>
                             <input type="number" class="form-control" v-model="invoice.leftEye.axis" step="1" min="0" max="180">
                             <span class="input-group-addon">Addition</span>
                             <input type="number" class="form-control" v-model="invoice.leftEye.addition" step="0.25">
                         </div>
                     </div>
-                    <div class="form-group row">
+                    <div class="form-group">
                         <label for="">Right eye</label>
                         <div class="input-group form-group">
                             <span class="input-group-addon">Sphere</span>
                             <input type="number" class="form-control" v-model="invoice.rightEye.sphere" step="0.25">
                             <span class="input-group-addon">Cylinder</span>
                             <input type="number" class="form-control" v-model="invoice.rightEye.cylinder" step="0.25">
+                        </div>
+                        <div class="input-group form-group">
                             <span class="input-group-addon">Axis</span>
                             <input type="number" class="form-control" v-model="invoice.rightEye.axis" step="1" min="0" max="180">
                             <span class="input-group-addon">Addition</span>
@@ -123,15 +167,16 @@
                     <div class="panel-heading">
                         <h3><i class="fas fa-calculator"></i> New Invoice: </h3>
                     </div>
-                    <div class="panel-body">
-                        <p><strong>{{invoice.client.name}}</strong></p>
-                        <p><strong>{{invoice.client.phone}}</strong></p>
+                    <div class="panel-body text-left">
+                        <p><strong>Client: {{invoice.client.name}}</strong></p>
+                        <p><strong>Phone: {{invoice.client.phone}}</strong></p>
                         <div v-if="invoice.items.length > 0">
                             <hr>
                             <p><strong>Items:</strong></p>
                             <ul v-for="(item, i) in invoice.items" class="text-left">
                                 <li>
-                                    <p><span>{{item.title}}: {{item.quantity}} x ({{item.price}}) = </span><strong>{{item.quantity * item.price}}</strong> <span class="del" @@click="delItem(i)"><i class="fas fa-trash-alt"></i></span></p>
+                                    <p><span class="del" @@click="delItem(i)"><i class="fas fa-trash-alt"></i></span>
+                                        <span>{{item.title}}: {{item.quantity}} x ({{item.price}}) = </span><strong>{{item.quantity * item.price}}</strong> </p>
                                 </li>
                             </ul>
                             <hr>
@@ -148,164 +193,165 @@
     </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="https://unpkg.com/vue-toastr-2/dist/vue-toastr-2.js"></script>
 <script>
-        class Invoice {
-            constructor(client, branch, items, insurance, leftEye, rightEye, date, total){
-                this.client = client || new Client()
-                this.branch = branch || new Branch()
-                this.items = items || []
-                this.insurance = insurance || new Insurance()
-                this.leftEye = leftEye || new Eye(0, 0, 0, 0)
-                this.rightEye = rightEye || new Eye(0, 0, 0, 0)
-                this.date = date || 'N/A'
-                this.total = total || 0
+    class Invoice {
+        constructor(client, branch, items, insurance, leftEye, rightEye, date, total){
+            this.client = client || new Client()
+            this.branch = branch || new Branch()
+            this.items = items || []
+            this.insurance = insurance || new Insurance()
+            this.leftEye = leftEye || new Eye(0, 0, 0, 0)
+            this.rightEye = rightEye || new Eye(0, 0, 0, 0)
+            this.date = date || 'N/A'
+            this.total = total || 0
+        }
+    }
+    class Item {
+        constructor(id, model, desc, price, quantity) {
+            this.id = id
+            this.model = model
+            this.desc = desc
+            this.price = price
+            this.quantity = quantity || 1
+        }
+    }
+    class Client {
+        constructor(name, phone) {
+            this.name = name
+            this.phone = phone
+        }
+    }
+    class Branch {
+        constructor(id, branchName) {
+            this.id = id
+            this.branchName = branchName
+        }
+    }
+    class Insurance {
+        constructor(id, name, discount) {
+            this.id = id
+            this.name = name
+            this.discount = discount
+        }
+    }
+    class Eye {
+        constructor(sphere, cylinder, axis, addition) {
+            this.sphere = sphere
+            this.cylinder = cylinder
+            this.axis = axis
+            this.addition = addition
+        }
+    }
+    var insurancesjs = @Html.Raw(Json.Encode(insurancesdb));
+    var insurances=[];
+    for (i = 0; i <insurancesjs.length; i++) {
+        insurances.push(new Insurance(insurancesjs[i].Id, insurancesjs[i].Description, insurancesjs[i].Discount));
+    }
+    var branchesjs=@Html.Raw(Json.Encode(branchesdb));
+    var branches=[];
+    for(i=0; i<branchesjs.length; i++){
+        branches.push(new Branch(branchesjs[i].Id, branchesjs[i].BranchName));
+    }
+    var app = new Vue({
+        el: '#app',
+        created() {
+            console.log(this.insurances, this.branches)
+        },
+        data() {
+            return {
+                title: 'Create invoice',
+                newItem: new Item(),
+                insurances:insurances,
+                branches: branches,
+                invoice: new Invoice(),
+                totalPrice: 0,
+                showDiscount: false,
+                loading: false,
+                loadingSubmit: false,
+                submitted: false
             }
-        }
-        class Item {
-            constructor(id, model, desc, price, quantity) {
-                this.id = id
-                this.model = model
-                this.desc = desc
-                this.price = price
-                this.quantity = quantity || 1
-            }
-        }
-        class Client {
-            constructor(name, phone) {
-                this.name = name
-                this.phone = phone
-            }
-        }
-        class Branch {
-            constructor(id, branchName) {
-                this.id = id
-                this.branchName = branchName
-            }
-        }
-        class Insurance {
-            constructor(id, name, discount) {
-                this.id = id
-                this.name = name
-                this.discount = discount
-            }
-        }
-        class Eye {
-            constructor(sphere, cylinder, axis, addition) {
-                this.sphere = sphere
-                this.cylinder = cylinder
-                this.axis = axis
-                this.addition = addition
-            }
-        }
-        var insurancesjs = @Html.Raw(Json.Encode(insurancesdb));
-        var insurances=[];
-        for (i = 0; i <insurancesjs.length; i++) {
-            insurances.push(new Insurance(insurancesjs[i].Id, insurancesjs[i].Description, insurancesjs[i].Discount));
-        }
-        var branchesjs=@Html.Raw(Json.Encode(branchesdb));
-        var branches=[];
-        for(i=0; i<branchesjs.length; i++){
-            branches.push(new Branch(branchesjs[i].Id, branchesjs[i].BranchName));
-        }
-        var app = new Vue({
-            el: '#app',
-            created() {
-                console.log(this.insurances, this.branches)
+        },
+        methods: {
+            addProd(){
+                this.invoice.items.unshift(this.newItem)
+                this.totalPrice += this.newItem.price * this.newItem.quantity
+                this.newItem = new Item()
+                console.log(this.newItem)
             },
-            data() {
-                return {
-                    title: 'Create invoice',
-                    newItem: new Item(),
-                    insurances:insurances,
-                    branches: branches,
-                    invoice: new Invoice(),
-                    totalPrice: 0,
-                    showDiscount: false,
-                    loading: false,
-                    loadingSubmit: false,
-                    submitted: false
-                }
-            },
-            methods: {
-                addProd(){
-                    this.invoice.items.unshift(this.newItem)
-                    this.totalPrice += this.newItem.price * this.newItem.quantity
-                    this.newItem = new Item()
-                    console.log(this.newItem)
-                },
-                requestItemByModel(){
-                    this.loading = true
-                    axios.post('@Url.Action("GetItemByModel", "Invoices")', { "model": this.newItem.model })
-                        .then((response) => {
-                            console.log(response.data)
-                            this.newItem.id = response.data.Id
-                            this.newItem.title = response.data.Color+" "+response.data.ItemType+" "+response.data.BrandName
-                            this.newItem.price = response.data.Price
-                            this.$toastr.success('Item found: ' + this.newItem.title);
-                            this.loading = false
-                        })
-                        .catch((error) => {
-                            console.log(error)
-                            this.$toastr.error('Please try again later.', 'Error reaching the item!');
-                            this.loading = false
-                        })
-                },
-                onSubmit(){
-                    this.invoice.total = this.totalPrice
-                    this.loadingSubmit = true
-                    axios.post('@Url.Action("Create", "Invoices")', { "invoicejs": JSON.stringify(this.invoice)})
-                        .then((response) => {
-                            console.log(response.data)
-                            this.invoice = new Invoice()
-                            this.totalPrice = 0
-                            this.$toastr.success('Invoice was successfully created!');
-                            this.loadingSubmit = false
-                            this.submitted = true
-                        })
-                        .catch((error) => {
-                            this.$toastr.error('Please try again later.', 'Error while creating the invoice!');
-                            this.loadingSubmit = false
-                        })
-                },
-                fetchInsurances(){
-                    axios.post('https://jsonplaceholder.typicode.com/posts', this.invoice)
-                        .then((response) => {
+            requestItemByModel(){
+                this.loading = true
+                axios.post('@Url.Action("GetItemByModel", "Invoices")', { "model": this.newItem.model })
+                    .then((response) => {
                         console.log(response.data)
-                        this.insurances = response.data
+                        this.newItem.id = response.data.Id
+                        this.newItem.title = response.data.Color+" "+response.data.ItemType+" "+response.data.BrandName
+                        this.newItem.price = response.data.Price
+                        this.$toastr.success('Item found: ' + this.newItem.title);
+                        this.loading = false
                     })
                     .catch((error) => {
-                            this.$toastr.error('Please try again later.', 'Error while fetching the insurances!');
+                        console.log(error)
+                        this.$toastr.error('Please try again later.', 'Error reaching the item!');
+                        this.loading = false
                     })
-                },
-                delItem(i){
-                    if(confirm('Want to delete?')){
-                        this.totalPrice -= this.invoice.items[i].price * this.invoice.items[i].quantity
-                        this.invoice.items.splice(i, 1)
-                    }
-                }
             },
-            computed: {
-                finalPrice(){
-                    var ins = this.invoice.insurance.discount
-                    console.log('insuranse: '+ins)
-                    if(ins <= 100 || ins >= 1)
-                        return this.totalPrice - this.totalPrice * this.invoice.insurance.discount / 100
-                    return this.totalPrice
-                }
+            onSubmit(){
+                this.invoice.total = this.totalPrice
+                this.loadingSubmit = true
+                axios.post('@Url.Action("Create", "Invoices")', { "invoicejs": JSON.stringify(this.invoice)})
+                    .then((response) => {
+                        console.log(response.data)
+                        this.invoice = new Invoice()
+                        this.totalPrice = 0
+                        this.$toastr.success('Invoice was successfully created!');
+                        this.loadingSubmit = false
+                        this.submitted = true
+                    })
+                    .catch((error) => {
+                        this.$toastr.error('Please try again later.', 'Error while creating the invoice!');
+                        this.loadingSubmit = false
+                    })
             },
-            watch: {
-                invoice: {
-                    handler: function(inv) {
-
-                        if(inv.client.name){
-                            this.submitted = false
-                        }
-                    },
-                    deep: true
-                    }
+            fetchInsurances(){
+                axios.post('https://jsonplaceholder.typicode.com/posts', this.invoice)
+                    .then((response) => {
+                    console.log(response.data)
+                    this.insurances = response.data
+                })
+                .catch((error) => {
+                        this.$toastr.error('Please try again later.', 'Error while fetching the insurances!');
+                })
+            },
+            delItem(i){
+                if(confirm('Want to delete?')){
+                    this.totalPrice -= this.invoice.items[i].price * this.invoice.items[i].quantity
+                    this.invoice.items.splice(i, 1)
+                }
             }
-        })
+        },
+        computed: {
+            finalPrice(){
+                var ins = this.invoice.insurance.discount
+                console.log('insuranse: '+ins)
+                if(ins <= 100 || ins >= 1)
+                    return this.totalPrice - this.totalPrice * this.invoice.insurance.discount / 100
+                return this.totalPrice
+            }
+        },
+        watch: {
+            invoice: {
+                handler: function(inv) {
+
+                    if(inv.client.name){
+                        this.submitted = false
+                    }
+                },
+                deep: true
+                }
+        }
+    })
 </script>
 <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>

@@ -6,50 +6,38 @@
 }
 
 <section>
-<div class="alert alert-primary">
-    <h2><a href="~/Insurances" class="pull-left"><i class="fas fa-arrow-alt-circle-left fa-lg"></i></a>Create Insurance</h2>
-</div>
-
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="col-md-8 col-lg-6 mx-auto pb-5 d-flex flex-column">                 
-        <div class="col-sm-12 col-md-10 mx-auto  my-3 py-1">
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <div class="row">
-                <div class="col-sm-12">
-                    @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", placeholder="Insurance Description" } })
-                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-12 col-md-10 mx-auto  my-3 py-1">
-            <div class="row">
-                <div class="col-sm-12">
-                    @Html.EditorFor(model => model.Discount, new { htmlAttributes = new { @class = "form-control", placeholder="Discount" } })
-                    @Html.ValidationMessageFor(model => model.Discount, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
-        <div class="row d-flex justify-content-between">
-            <input type="submit" value="Create" class="btn btn-primary col-9 mx-auto" />
-        </div>
+    <div class="alert alert-primary">
+        <h2>
+            <a href="~/Insurances" class="pull-left"><i class="fas fa-arrow-alt-circle-left fa-lg"></i></a>
+            Create Insurance</h2>
     </div>
-}
 
-@*<div class="col-sm-12 col-md-10 mx-auto  my-3 py-1">
-            <div class="row">
-                <div class="col-md-2">
-                    <a href=@Url.Action("Index") class="btn btn-default btn-block">
-                        <span class="glyphicon glyphicon-arrow-left"></span> Back to Insurances List
-                    </a>
-                </div>
-                <div class="col-md-offset-3 col-md-2">
-                    <button type="submit" value="Create" class="btn btn-default btn-block">
-                        <span class="glyphicon glyphicon-plus-sign"></span> Create
-                    </button>
+    @using (Html.BeginForm()) 
+    {
+        @Html.AntiForgeryToken()
+        
+        <div class="col-md-8 col-lg-6 mx-auto pb-5 d-flex flex-column">                 
+            <div class="col-sm-12 col-md-10 mx-auto  my-3 py-1">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="row">
+                    <div class="col-sm-12">
+                        @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", placeholder="Insurance Description" } })
+                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                    </div>
                 </div>
             </div>
-        </div>*@
-		</section>
+            <div class="col-sm-12 col-md-10 mx-auto  my-3 py-1">
+                <div class="row">
+                    <div class="col-sm-12">
+                        @Html.EditorFor(model => model.Discount, new { htmlAttributes = new { @class = "form-control", placeholder="Discount" } })
+                        @Html.ValidationMessageFor(model => model.Discount, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="row d-flex justify-content-between">
+                <input type="submit" value="Create" class="btn btn-primary col-9 mx-auto" />
+            </div>
+        </div>
+    }
+
+</section>
