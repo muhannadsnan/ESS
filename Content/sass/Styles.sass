@@ -1,7 +1,10 @@
 @import "variables"
 
 a
+    color: $primary-color
     +transition(all 350ms ease-out)
+    &:hover
+        color: lighten($primary-color, 15%)
 input[type="text"]
     padding: 10px
 input[type="number"]
@@ -141,3 +144,13 @@ section
     .section
         height: 75vh
         background-size: 100% 100%
+
+#managerTasks
+    h3
+        border: 0px solid #ccc  
+        &:hover
+            &:before
+                content: "\f0da" 
+                +transition(all 350ms ease-out)
+                font-family: 'FontAwesome';
+                padding-right: 10px

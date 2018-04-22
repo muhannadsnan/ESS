@@ -2,47 +2,37 @@
     ViewBag.Title = "ManagerTasksView";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
-<section>
-<div class="alert alert-primary">
-    <h2><a href="~/Home/Index" class="pull-left"><i class="fas fa-home fa-lg"></i></a>Manager Tasks</h2>
-</div>
+<section id="managerTasks">
+    <div class="alert alert-primary">
+        <h2><a href="~/Home/Index" class="pull-left"><i class="fas fa-home fa-lg"></i></a>Manager Tasks</h2>
+    </div>
 
-<div class="list-group">
-    <div class="row">
-		<div class="col-md-2"></div>
-        <div class="col-md-4">
-			<h3><a href="~/ApplicationUsers"><i class="fas fa-users"></i> Users</a></h3>
-        </div>
-        <div class="col-md-4">
-			<h3><a href="~/Items"><i class="fas fa-barcode"></i> Items</a></h3>
-        </div>
-    </div>
-    <div class="row">
-		<div class="col-md-2"></div>
-        <div class="col-md-4">
-			<h3><a href="~/Invoices"><i class="fas fa-file-alt"></i> Invoices</a></h3>
-        </div>
-        <div class="col-md-4">
-			<h3><a href="~/Orders"><i class="fas fa-file-alt"></i> Orders</a></h3>
-        </div>
-    </div>
-    <div class="row">
-		<div class="col-md-2"></div>
-        <div class=" col-md-4">
-			<h3><a href="~/Branches"><i class="fab fa-periscope"></i> Branches</a></h3>
-        </div>
-        <div class="col-md-4">
-			<h3><a href="~/Categories"><i class="fas fa-sitemap"></i> Categories</a></h3>
-        </div>
-    </div>
-    <div class="row">
-		<div class="col-md-2"></div>
-        <div class="col-md-4">
-			<h3><a href="~/Insurances"><i class="fas fa-credit-card"></i> Insurances</a></h3>
-        </div>
-        <div class="col-md-4">
-			<h3><a href="~/Quantities"><i class="fab fa-quora"></i> Quantities</a></h3>
+    <div class="list-group text-left pl-5">
+        <div class="row">
+            <div class="col-md-4 offset-md-2">
+                <h3><a href="~/ApplicationUsers"><i class="fas fa-users"></i> Users</a></h3>
+            </div>
+            <div class="col-md-4">
+                <h3><a href="~/Items"><i class="fas fa-barcode"></i> Items</a></h3>
+            </div>
+            <div class="col-md-4 offset-md-2">
+                <h3><a href="~/Invoices"><i class="fas fa-file-alt"></i> Invoices</a></h3>
+            </div>
+            <div class="col-md-4">
+                <h3><a href="~/Orders"><i class="fas fa-list-alt"></i> Orders</a></h3>
+            </div>
+            <div class=" col-md-4 offset-md-2">
+                <h3><a href="~/Branches"><i class="fab fa-periscope"></i> Branches</a></h3>
+            </div>
+            <div class="col-md-4">
+                <h3><a href="~/Categories"><i class="fas fa-sitemap"></i> Categories</a></h3>
+            </div>
+            <div class="col-md-4 offset-md-2">
+                <h3><a href="~/Insurances"><i class="fas fa-credit-card"></i> Insurances</a></h3>
+            </div>
+            <div class="col-md-4">
+                <h3><a href="~/Quantities"><i class="fab fa-quora"></i> Quantities</a></h3>
+            </div>
         </div>
     </div>
-</div>
 </section>

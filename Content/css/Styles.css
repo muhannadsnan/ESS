@@ -1,9 +1,12 @@
 a {
+  color: #9c27b0;
   -webkit-transition: all 350ms ease-out;
   -moz-transition: all 350ms ease-out;
   -ms-transition: all 350ms ease-out;
   -o-transition: all 350ms ease-out;
   transition: all 350ms ease-out; }
+  a:hover {
+    color: #c34cd7; }
 
 input[type="text"] {
   padding: 10px; }
@@ -151,3 +154,15 @@ section {
 #login .section {
   height: 75vh;
   background-size: 100% 100%; }
+
+#managerTasks h3 {
+  border: 0px solid #ccc; }
+  #managerTasks h3:hover:before {
+    content: "\f0da";
+    -webkit-transition: all 350ms ease-out;
+    -moz-transition: all 350ms ease-out;
+    -ms-transition: all 350ms ease-out;
+    -o-transition: all 350ms ease-out;
+    transition: all 350ms ease-out;
+    font-family: 'FontAwesome';
+    padding-right: 10px; }
