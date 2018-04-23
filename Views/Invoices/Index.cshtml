@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
 <div id="app">
-    <div class="d-print-none">
+   
     <div class="alert alert-primary">
         <h2>Invoices</h2>
     </div>
@@ -17,11 +17,8 @@
                     <input type="search" name="InvoiceId" placeholder="Invoice Number" class="form-control" />
             </div>
             <div class="col-md-2">
-                
                     <input type="search" name="ClientName" placeholder="Client Name" class="form-control">
-                
                     <input type="search" name="ClientPhoneNumber" placeholder="Client Phone" class="form-control">
-                
             </div>
             <div class="col-md-3">
                 <div class="form-group input-group">
@@ -32,14 +29,11 @@
                 </div>
             </div>
             <div class="col-md-2">
-                
                     @Html.DropDownList("InsuranceId", null, htmlAttributes: new { @class = "form-control" })
-                
                     @if (User.IsInRole("Admins"))
 					{
                         @Html.DropDownList("BranchId", null, htmlAttributes: new { @class = "form-control" })
                     }
-             
             </div>
         </div>
 		<div class="row justify-content-center">
@@ -179,28 +173,24 @@
         });
         </script>
     }
-
-</div>
     <!--------------- Modal ---------------->
-	
     <div class="modal fade d-print-block" id="invoiceDetailsModal" tabindex="-1" role="dialog" aria-labelledby="invoiceDetailsModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content panel panel-primary">
                 <div class="modal-header panel-heading">
 					<img src="~/Images/logo-black.png" style="height:50px" alt="">
                     <h3 class="modal-title w-100" id="invoiceDetailsModalLabel">Invoice Details</h3>   
-                    <button type="button" class="close d-print-none" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-				<div class="d-none d-print-block">Print Only (Hide on screen only)</div>
                     <!---- MODAL BODY ------>
                     <h1 v-show="loading"><i class="fas fa-spinner fa-spin"></i></h1>
                     <div v-show="!loading">
                         <div class="panel panel-primary">
                             <div class="panel-body text-left">
-                                <div class="row">
+                                <div class="row" id="print1">
                                     <div class="col-md-6">
                                         <p><strong>Invoice Number: </strong> <span>{{selectedInvoice.InvoiceId}}</span></p>
                                         <p><strong>Date: </strong> <span>{{selectedInvoice.Date}}</span></p>
@@ -212,26 +202,37 @@
                                         <p><strong>Insurance Description: </strong> <span>{{selectedInvoice.InsuranceDescription}}</span></p>
                                     </div>
                                 </div>
-                                <p><strong>Total: </strong> <span>{{selectedInvoice.Total}}</span></p>
-                                <p><strong>Discount: </strong> <span>{{selectedInvoice.Discount}}%</span></p>
-                                <p><strong>Final Price: </strong> <span>{{selectedInvoice.Total - (selectedInvoice.Total * ( selectedInvoice.Discount / 100 ))}}</span></p>
+								<div id="print2">
+									<p><strong>Total: </strong> <span>{{selectedInvoice.Total}}</span></p>
+									<p><strong>Discount: </strong> <span>{{selectedInvoice.Discount}}%</span></p>
+									<p><strong>Final Price: </strong> <span>{{selectedInvoice.Total - (selectedInvoice.Total * ( selectedInvoice.Discount / 100 ))}}</span></p>
+								</div>
                                 <hr />
-                                <div class="form-group" v-for="(eye, i) in selectedInvoice.Eyes">
-                                    <label v-if="eye.IsRightEye == false">Left Eye</label>
-                                    <label v-if="eye.IsRightEye == true">Right Eye</label>
-                                    <div class="input-group form-group">
-                                        <span class="input-group-addon">Sphere</span>
-                                        <strong class="pl-2 pr-4">{{eye.Sphere}}</strong>
-                                        <span class="input-group-addon">Cylinder</span>
-                                        <strong class="pl-2 pr-4">{{eye.Cylinder}}</strong>
-                                        <span class="input-group-addon">Axis</span>
-                                        <strong class="pl-2 pr-4">{{eye.Axis}}</strong>
-                                        <span class="input-group-addon">Addition</span>
-                                        <strong class="pl-2 pr-4">{{eye.Addition}}</strong>
-                                    </div>
-                                </div>
+								<div id="print3">
+								<table class="table table-hover">
+								  <thead>
+									<tr>
+									  <th scope="col">#</th>
+									  <th scope="col">Sphere</th>
+									  <th scope="col">Cylinder</th>
+									  <th scope="col">Axis</th>
+									  <th scope="col">Addition</th>
+									</tr>
+								  </thead>
+								  <tbody>
+									<tr v-for="(eye, i) in selectedInvoice.Eyes">
+									  <th scope="row" v-if="eye.IsRightEye == false">Left Eye</th>
+									  <th scope="row" v-if="eye.IsRightEye == true">Right Eye</th>
+									  <td>{{eye.Sphere}}</td>
+									  <td>{{eye.Cylinder}}</td>
+									  <td>{{eye.Axis}}</td>
+									  <td>{{eye.Addition}}</td>
+									</tr>
+								  </tbody>
+								</table>
+								</div>
                                 <hr />
-                                <div class="form-group" >
+								<div id="print4">
                                     <label>Items</label>
                                     <table class="table table-hover">
                                         <tr>
@@ -247,19 +248,19 @@
                                             <td>{{item.Price}}</td>
                                         </tr>
                                     </table>
-                                </div>
+								</div>
                             </div>
                         </div>
                     </div>
                 </div><!-------- END: MODAL BODY ------------>
                 <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-default d-print-none" data-dismiss="modal">Close</button>
-                    <button Class="btn btn-warning d-print-none" onclick="myFunction()">Print this page</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button Class="btn btn-warning" onclick="invoicePrint()">Print this invoice</button>
                 </div>
             </div>
         </div>
     </div>
-
+</div>
 <!--------------------------END: MODAL------------------------------>
      
 @*<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>*@
@@ -267,8 +268,23 @@
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="https://unpkg.com/vue-toastr-2/dist/vue-toastr-2.js"></script>
 <script>
-function myFunction() {
-    window.print();
+function invoicePrint() {
+	var x0="<link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css' integrity='sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4' crossorigin='anonymous'>";
+	var x1="<div style='height:29.7cm;width:21cm;text-align:center;margin-left:auto;margin-right:auto;margin-top:2.5cm'>";
+	var x2="<h1 style='text-align:center'>Eyewear Store</h1><br><h3 style='text-align:center'>Invoice Details</h3>"
+	var x3="<hr />"+"<div class='row' style='text-align:center'>";
+	var x4=document.getElementById("print1").innerHTML;
+	var x5="</div><div style='text-align:center'>";
+	var x6=document.getElementById("print2").innerHTML;
+	var x7="</div>";
+	var print3=document.getElementById("print3").innerHTML;
+	var x8 = print3.replace("table", "table style='text-align:center' ");
+	var print4=document.getElementById("print4").innerHTML;
+	var x9 = print4.replace("table", "table style='text-align:center' ");
+	var x10="<button onclick='window.print()' class='btn btn-primary d-print-none'>Print Invoice</button></div>";
+	var x=x0+x1+x2+x3+x4+x5+x6+x7+x8+x9+x10;
+	var newindow=window.open();
+	newindow.document.write(x);
 }
 </script>
 <script>
@@ -321,7 +337,10 @@ function myFunction() {
                             this.$toastr.error('Please try again later.', 'Error reaching the invoice!');
                             this.loading = false
                         })
-                }
+                },
+				printing(){
+					
+				}
             },
             created() {
                 //this.apploaded = true
